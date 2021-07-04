@@ -3,6 +3,8 @@ thanks for the course materials mrdbourke
 
 for the format I used this cheatsheet as inspiration (scroll down): https://zerotomastery.io/cheatsheets/python-cheat-sheet/
 
+# work in progress
+
 ## Contents  
 ### Useful libraries, modules  
 - [Tensorflow](#tensorflow)
