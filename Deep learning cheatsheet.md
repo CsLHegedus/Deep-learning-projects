@@ -19,6 +19,7 @@ for the format I used this cheatsheet as inspiration (scroll down): https://zero
 - Reshape, transpose
 - Finding the min, max, mean, sum (aggregation)
 - Setting and changing tensor datatype
+- Finding the positional maximum and minimum
 
 ### Useful libraries, modules
 ##### Tensorflow
@@ -84,8 +85,11 @@ random_1 = random_1.normal(shape=(3, 2)) # create tensor from a normal distribut
 # Create a tensor with 50 random values between 0 and 100
 E = tf.constant(np.random.randint(low=0, high=100, size=50))
 
+# Create a tensor with 50 values between 0 and 1
+F = tf.constant(np.random.random(50))
+
 # Change the order of elements of a tensor with local seed
-tf.random.shuffle(not_shuffled, seed=42) # local seed that only effects the codeline you write it in
+G = tf.random.shuffle(not_shuffled, seed=42) # local seed that only effects the codeline you write it in
 
 # Change the order of elements of a tensor with global seed
 # Set global random seed
@@ -114,8 +118,8 @@ print("Total number of elements (2*3*4*5):", tf.size(rank_4_tensor).numpy()) # .
 ```
 
 ##### Reshaping tensors
-Note that slicing also works on tensors:
 ```
+# Note that Python slicing also works on tensors
 # Get the dimension from each index except for the final one
 rank_4_tensor[:1, :1, :1, :]
 
@@ -200,5 +204,15 @@ Non_Default = tf.constant([1.7, 7.4], dtype=tf.float16)
 
 # Change from float32 to float16 (reduced precision)
 Default_Changed = tf.cast(B, dtype=tf.float16)
-
 ```
+##### Finding the positional maximum and minimum
+Max returns the index (or position) of the largest value in the tensor
+Min is the same
+```
+# Find the maximum element position of F
+tf.argmax(F)
+
+# Find the minimum element position of F
+tf.argmin(F)
+```
+
