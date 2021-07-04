@@ -5,14 +5,14 @@ for the format I used this cheatsheet as inspiration (scroll down): https://zero
 
 ## Contents  
 ### Useful libraries, modules  
-- Tensorflow
-- Numpy  
+- [Tensorflow](#tensorflow)
+- [Numpy](#numpy)  
 ### Tensors in tensorflow  
-- Constant tensor  
-- Variable tensor  
-- Random tensors and shuffling  
-- Tensor attributes  
-- Adding, removing dimensions of a tensors  
+- [Constant tensor](#constant-tensor)  
+- [Variable tensor](#variable-tensor) 
+- [Random tensors and shuffling](#random-tensors-and-shuffling)  
+- [Tensor attributes](tensor-attributes)
+- [Adding, removing dimensions of a tensor](#adding-removing-dimensions-of-a-tensor)  
 ### Manipulating tensors
 - Tensors basic (algebraic) operations
 - Tensor - tensor operations
@@ -222,7 +222,7 @@ tf.argmax(F)
 tf.argmin(F)
 ```
 
-##### Adding, removing dimensions of a tensors
+##### Adding, removing dimensions of a tensor
 ```
 # Note that Python slicing also works on tensors
 # Get the dimension from each index except for the final one
@@ -282,6 +282,3 @@ print(tf.config.list_physical_devices('GPU'))
 You can also find information about your GPU using:
 !nvidia-smi
 ```
-
-[here](#tensorflow)
-
