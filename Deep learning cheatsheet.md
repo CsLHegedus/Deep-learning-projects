@@ -13,7 +13,7 @@ for the format I used this cheatsheet as inspiration (scroll down): https://zero
 - [Constant tensor](#constant-tensor)  
 - [Variable tensor](#variable-tensor) 
 - [Random tensors and shuffling](#random-tensors-and-shuffling)  
-- [Tensor attributes](tensor-attributes)
+- [Tensor attributes](#tensor-attributes)
 - [Adding, removing dimensions of a tensor](#adding-removing-dimensions-of-a-tensor)  
 ### Manipulating tensors
 - Tensors basic (algebraic) operations
