@@ -28,6 +28,7 @@ for the format I used this cheatsheet as inspiration (scroll down): https://zero
 
 
 ### Useful libraries, modules
+[Contents](#contents)
 ##### Tensorflow
 Tensorflow is the end to end library for data preprocessing, modelling, model service
 ```
@@ -36,6 +37,7 @@ import tensorflow as tf
 print(tf.__version__) # find the version number (should be 2.x+)
 ```
 ##### Numpy
+[Contents](#contents)
 Numpy is a library for numerical, tensor/array computations 
 ```
 # Import numpy
@@ -44,6 +46,7 @@ import numpy as np
 
 ### Tensors in Tensorflow
 ##### Tensors in Tensorflow
+[Contents](#contents)
 Note that:  
 scalar: a single number.  
 vector: a number with direction (e.g. wind speed with direction).  
@@ -51,6 +54,7 @@ matrix: a 2-dimensional array of numbers.
 tensor: an n-dimensional arrary of numbers (where n can be any number, a 0-dimension tensor is a scalar, a 1-dimension tensor is a vector).  
 
 ##### Constant tensor
+[Contents](#contents)
 tf.Constant: immutable tensor  (something you don't change)
 ```
 # Create a scalar (rank 0 tensor)
@@ -68,6 +72,7 @@ another_matrix = tf.constant([[10., 7.],
 I = tf.Variable(np.arange(0, 5)) # it outputs [0, 1, 2, 3, 4]
 ```
 ##### Variable tensor
+[Contents](#contents)
 tf.Variable mutable tensor (like tf.Constant, just changeable)
 ```
 changeable_tensor = tf.Variable([10, 7])
@@ -84,6 +89,7 @@ tf.ones(shape=(3, 2))
 tf.zeros(shape=(3, 2))
 ```
 ##### Random tensors and shuffling
+[Contents](#contents)
 Note: always set the random seed for reproducibility
 ```
 # Create random tensor 
@@ -107,6 +113,7 @@ tf.random.set_seed(42) #the global random seed that works for the entire code bl
 tf.random.shuffle(not_shuffled, seed=42)
 ```
 ##### Tensor attributes
+[Contents](#contents)
 Useful informations about tensors  
 
 Note that:  
@@ -127,6 +134,7 @@ print("Total number of elements (2*3*4*5):", tf.size(rank_4_tensor).numpy()) # .
 
 ### Manipulating tensors
 ##### Tensors basic (algebraic) operations
+[Contents](#contents)
 Basic, element wise operations with Python
 ```
 # Elementwise addition operator
