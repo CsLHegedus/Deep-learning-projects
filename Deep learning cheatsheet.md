@@ -48,15 +48,14 @@ import numpy as np
 
 ### Tensors in Tensorflow
 ##### Tensors in Tensorflow
-[Contents](#contents)  
 Note that:  
 scalar: a single number.  
 vector: a number with direction (e.g. wind speed with direction).  
 matrix: a 2-dimensional array of numbers.  
 tensor: an n-dimensional arrary of numbers (where n can be any number, a 0-dimension tensor is a scalar, a 1-dimension tensor is a vector).  
+[Back to top](#contents)  
 
 ##### Constant tensor
-[Contents](#contents)  
 tf.Constant: immutable tensor  (something you don't change)
 ```
 # Create a scalar (rank 0 tensor)
@@ -73,8 +72,8 @@ another_matrix = tf.constant([[10., 7.],
 # Create a variable tensor with numpy
 I = tf.Variable(np.arange(0, 5)) # it outputs [0, 1, 2, 3, 4]
 ```
+[Back to top](#contents)  
 ##### Variable tensor
-[Contents](#contents)  
 tf.Variable mutable tensor (like tf.Constant, just changeable)
 ```
 changeable_tensor = tf.Variable([10, 7])
@@ -90,8 +89,8 @@ tf.ones(shape=(3, 2))
 # Make a tensor of all zeros
 tf.zeros(shape=(3, 2))
 ```
+[Back to top](#contents)
 ##### Random tensors and shuffling
-[Contents](#contents)  
 Note: always set the random seed for reproducibility
 ```
 # Create random tensor 
@@ -114,8 +113,8 @@ tf.random.set_seed(42) #the global random seed that works for the entire code bl
 # Set the operation random seed
 tf.random.shuffle(not_shuffled, seed=42)
 ```
+[Back to top](#contents)
 ##### Tensor attributes
-[Contents](#contents)  
 Useful informations about tensors  
 
 Note that:  
@@ -133,10 +132,9 @@ print("Elements along axis 0 of tensor:", rank_4_tensor.shape[0])
 print("Elements along last axis of tensor:", rank_4_tensor.shape[-1])
 print("Total number of elements (2*3*4*5):", tf.size(rank_4_tensor).numpy()) # .numpy() converts to NumPy array
 ```
-
+[Back to top](#contents)
 ### Manipulating tensors
 ##### Tensors basic (algebraic) operations
-[Contents](#contents)  
 Basic, element wise operations with Python
 ```
 # Elementwise addition operator
@@ -169,8 +167,8 @@ tf.sqrt(H)
 
 # Find the log (input also needs to be float)
 tf.math.log(H)
-
 ```
+[Back to top](#contents)
 ##### Tensor - tensor operations 
 ```
 Matrix mutliplication with Python
@@ -193,6 +191,7 @@ tf.transpose(X)
 Example for more operations in one line
 tf.matmul(a=X, b=Y, transpose_a=True, transpose_b=False)
 ```
+[Back to top](#contents)
 ##### Finding the min, max, mean, sum (aggregation)
 ```
 # Get the absolute values
@@ -210,6 +209,7 @@ tf.reduce_mean(E)
 # Find the sum
 tf.reduce_sum(E)
 ```
+[Back to top](#contents)
 ##### Setting and changing tensor datatype
 ```
 # Create a new tensor with default datatype (float32)
@@ -221,6 +221,7 @@ Non_Default = tf.constant([1.7, 7.4], dtype=tf.float16)
 # Change from float32 to float16 (reduced precision)
 Default_Changed = tf.cast(B, dtype=tf.float16)
 ```
+[Back to top](#contents)
 ##### Finding the positional maximum and minimum
 Max returns the index (or position) of the largest value in the tensor
 Min is the same
@@ -231,7 +232,7 @@ tf.argmax(F)
 # Find the minimum element position of F
 tf.argmin(F)
 ```
-
+[Back to top](#contents)
 ##### Adding, removing dimensions of a tensor
 ```
 # Note that Python slicing also works on tensors
@@ -247,7 +248,7 @@ tf.expand_dims(rank_2_tensor, axis=-1) # "-1" means last axis
 # Squeezing a tensor (removing all single dimensions)
 G_squeezed = tf.squeeze(G)
 ```
-
+[Back to top](#contents)
 ### Data preprocessing
 ##### One hot encoding
 Turn string categories (stuff, not_stuff) into numbers ([[1,0],[0,1]])
@@ -260,8 +261,8 @@ tf.one_hot(some_list, depth=4) # 4 is the number of different categories you hav
 
 # Specify custom values for on and off encoding
 tf.one_hot(some_list, depth=4, on_value="We're live!", off_value="Offline")
-
 ```
+[Back to top](#contents)
 ### Utilities
 ##### Numpy - Tensorflow tensor conversions
 ```
@@ -274,6 +275,7 @@ np.array(J)
 # Convert tensor J to NumPy with .numpy()
 J.numpy()
 ```
+[Back to top](#contents)
 ##### Using Tensorflow decorator
 In the @tf.function decorator case, it turns a Python function into a callable TensorFlow graph. Which is a fancy way of saying, if you've written your own Python function, and you decorate it with @tf.function, when you export your code (to potentially run on another device), TensorFlow will attempt to convert it into a fast(er) version of itself (by making it part of a computation graph).
 ```
@@ -284,6 +286,7 @@ def tf_function(x, y):
 
 tf_function(x, y)
 ```
+[Back to top](#contents)
 ##### Finding access to GPUs
 ```
 # You can check if you've got access to a GPU using:
@@ -292,3 +295,4 @@ print(tf.config.list_physical_devices('GPU'))
 You can also find information about your GPU using:
 !nvidia-smi
 ```
+[Back to top](#contents)
