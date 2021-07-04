@@ -283,7 +283,5 @@ You can also find information about your GPU using:
 !nvidia-smi
 ```
 
-
-[here](#####tensors-in-tensorflow)
-
+[here](#tensorflow)
 
