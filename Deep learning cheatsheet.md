@@ -20,6 +20,12 @@ for the format I used this cheatsheet as inspiration (scroll down): https://zero
 - Finding the min, max, mean, sum (aggregation) of the tensor's elements
 - Setting and changing tensor datatype
 - Finding the positional maximum and minimum of a tensor
+### Data preprocessing
+- One hot encoding
+### Utilities
+- Numpy - Tensorflow tensor conversions
+- Using tensorflow decorator
+
 
 ### Useful libraries, modules
 ##### Tensorflow
@@ -58,6 +64,8 @@ matrix = tf.constant([[10, 7],
 another_matrix = tf.constant([[10., 7.],
                               [3., 2.],
                               [8., 9.]], dtype=tf.float16) # specify the datatype with 'dtype'
+# Create a variable tensor with numpy
+I = tf.Variable(np.arange(0, 5)) # it outputs [0, 1, 2, 3, 4]
 ```
 ##### Variable tensor
 tf.Variable mutable tensor (like tf.Constant, just changeable)
@@ -141,6 +149,17 @@ tf.multiply(tensor, 10) # it won't rewrite the original tensor
 tf.math.multiply(
     x, y, name=None
 )
+
+and others...
+# Square it
+tf.square(H)
+
+# Find the squareroot (will error if it is integer/default), needs to be non-integer
+tf.sqrt(H)
+
+# Find the log (input also needs to be float)
+tf.math.log(H)
+
 ```
 ##### Tensor - tensor operations 
 ```
@@ -219,5 +238,47 @@ tf.expand_dims(rank_2_tensor, axis=-1) # "-1" means last axis
 G_squeezed = tf.squeeze(G)
 ```
 
+### Data preprocessing
+##### One hot encoding
+Turn string categories (stuff, not_stuff) into numbers ([[1,0],[0,1]])
+```
+# Create a list of indices
+some_list = [0, 1, 2, 3]
 
+# One hot encode them
+tf.one_hot(some_list, depth=4) # 4 is the number of different categories you have
 
+# Specify custom values for on and off encoding
+tf.one_hot(some_list, depth=4, on_value="We're live!", off_value="Offline")
+
+```
+### Utilities
+##### Numpy - Tensorflow tensor conversions
+```
+# Create a tensor from a NumPy array
+J = tf.constant(np.array([3., 7., 10.]))
+
+# Convert tensor J to NumPy with np.array()
+np.array(J)
+
+# Convert tensor J to NumPy with .numpy()
+J.numpy()
+```
+##### Using Tensorflow decorator
+In the @tf.function decorator case, it turns a Python function into a callable TensorFlow graph. Which is a fancy way of saying, if you've written your own Python function, and you decorate it with @tf.function, when you export your code (to potentially run on another device), TensorFlow will attempt to convert it into a fast(er) version of itself (by making it part of a computation graph).
+```
+# Create a  function and decorate it with tf.function
+@tf.function
+def tf_function(x, y):
+  return x ** 2 + y
+
+tf_function(x, y)
+```
+##### Finding access to GPUs
+```
+# You can check if you've got access to a GPU using:
+print(tf.config.list_physical_devices('GPU'))
+
+You can also find information about your GPU using:
+!nvidia-smi
+```
