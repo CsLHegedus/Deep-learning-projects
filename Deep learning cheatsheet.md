@@ -1,4 +1,4 @@
-Based (copied from) on https://github.com/mrdbourke/tensorflow-deep-learning/
+Based on  (copied from) https://github.com/mrdbourke/tensorflow-deep-learning/
 thanks for the course materials mrdbourke
 
 for the format I used this cheatsheet as inspiration (scroll down): https://zerotomastery.io/cheatsheets/python-cheat-sheet/
