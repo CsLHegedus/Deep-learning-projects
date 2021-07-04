@@ -28,8 +28,8 @@ for the format I used this cheatsheet as inspiration (scroll down): https://zero
 
 
 ### Useful libraries, modules
-[Contents](#contents)
 ##### Tensorflow
+[Contents](#contents)
 Tensorflow is the end to end library for data preprocessing, modelling, model service
 ```
 # Import TensorFlow  
