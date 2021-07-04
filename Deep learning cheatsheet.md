@@ -4,24 +4,35 @@ thanks for the course materials mrdbourke
 for the format I used this cheatsheet as inspiration (scroll down): https://zerotomastery.io/cheatsheets/python-cheat-sheet/
 
 ## Contents  
-- Useful libraries, modules  
-- tensors in tensorflow  
--   
+### Useful libraries, modules  
+- Tensorflow  
+- Numpy  
+### Tensors in tensorflow  
+- Constant tensor  
+- Variable tensor  
+- Random tensors and shuffling  
+- Tensor attributes  
+- Reshaping tensors  
+### Manipulating tensors
+- Tensors basic (algebraic) operations
 
-#### Useful libraries, modules
+### Useful libraries, modules
+##### Tensorflow
 Tensorflow is the end to end library for data preprocessing, modelling, model service
 ```
 # Import TensorFlow  
 import tensorflow as tf
 print(tf.__version__) # find the version number (should be 2.x+)
 ```
+##### Numpy
 Numpy is a library for numerical, tensor/array computations 
 ```
 # Import numpy
 import numpy as np
 ```
 
-#### Tensors in Tensorflow
+### Tensors in Tensorflow
+##### Tensors in Tensorflow
 Note that:  
 scalar: a single number.  
 vector: a number with direction (e.g. wind speed with direction).  
@@ -72,5 +83,79 @@ tf.random.set_seed(42) #the global random seed that works for the entire code bl
 # Set the operation random seed
 tf.random.shuffle(not_shuffled, seed=42)
 ```
+##### Tensor attributes
+Useful informations about tensors  
 
+Note that:  
+Shape: The length (number of elements) of each of the dimensions of a tensor.  
+Rank: The number of tensor dimensions. A scalar has rank 0, a vector has rank 1, a matrix is rank 2, a tensor has rank n.  
+Axis or Dimension: A particular dimension of a tensor.  
+Size: The total number of items in the tensor.  
+
+```
+# Get various attributes of tensor
+print("Datatype of every element:", rank_4_tensor.dtype)
+print("Number of dimensions (rank):", rank_4_tensor.ndim)
+print("Shape of tensor:", rank_4_tensor.shape)
+print("Elements along axis 0 of tensor:", rank_4_tensor.shape[0])
+print("Elements along last axis of tensor:", rank_4_tensor.shape[-1])
+print("Total number of elements (2*3*4*5):", tf.size(rank_4_tensor).numpy()) # .numpy() converts to NumPy array
+```
+
+##### Reshape tensors
+Note that slicing also works on tensors:
+```
+# Get the dimension from each index except for the final one
+rank_4_tensor[:1, :1, :1, :]
+
+# Add an extra dimension (to the end) 1st solution
+rank_3_tensor = rank_2_tensor[..., tf.newaxis] # in Python "..." means "all dimensions prior to"
+
+# Add an extra dimension (to the end) 2nd solution
+tf.expand_dims(rank_2_tensor, axis=-1) # "-1" means last axis
+```
+
+### Manipulating tensors
+##### Tensors basic (algebraic) operations
+Basic, element wise operations with Python
+```
+# Elementwise addition operator
+tensor = tf.constant([[10, 7], [3, 4]])
+tensor + 10
+
+# Multiplication (known as element-wise multiplication)
+tensor * 10
+
+# Subtraction
+tensor - 10
+```
+
+Basic, elementwise operations with Tensorflow
+```
+# multiplication with tensorflow 1st solution 
+tf.multiply(tensor, 10) # it won't rewrite the original tensor
+
+# multiplication with tensorflow 2nd solution 
+tf.math.multiply(
+    x, y, name=None
+)
+
+Matrix mutliplication with Python
+tensor @ tensor
+
+Matrix mutliplication with Tensorflow
+tf.matmul(tensor, tensor)
+
+The dot product
+tf.tensordot(tf.transpose(X), Y, axes=1)
+
+Reshape
+tf.reshape(Y, shape=(2, 3))
+
+Transpose
+tf.transpose(X)
+
+Example for more operations in one line
+tf.matmul(a=X, b=Y, transpose_a=True, transpose_b=False)
+```
 
