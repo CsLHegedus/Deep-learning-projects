@@ -5,7 +5,7 @@ for the format I used this cheatsheet as inspiration (scroll down): https://zero
 
 ## Contents  
 ### Useful libraries, modules  
-- Tensorflow  
+- Tensorflow
 - Numpy  
 ### Tensors in tensorflow  
 - Constant tensor  
@@ -282,3 +282,8 @@ print(tf.config.list_physical_devices('GPU'))
 You can also find information about your GPU using:
 !nvidia-smi
 ```
+
+
+[here](#####tensors-in-tensorflow)
+
+
