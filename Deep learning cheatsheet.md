@@ -31,12 +31,12 @@ for the format I used this cheatsheet as inspiration (scroll down): https://zero
 
 ### Useful libraries, modules
 ##### Tensorflow
-[Contents](#contents)  
 Tensorflow is the end to end library for data preprocessing, modelling, model service
 ```
 # Import TensorFlow  
 import tensorflow as tf
 print(tf.__version__) # find the version number (should be 2.x+)
+[Back to top](#contents)
 ```
 ##### Numpy
 [Contents](#contents)  
