@@ -12,14 +12,14 @@ for the format I used this cheatsheet as inspiration (scroll down): https://zero
 - Variable tensor  
 - Random tensors and shuffling  
 - Tensor attributes  
-- Reshaping tensors  
+- Adding, removing dimensions of a tensors  
 ### Manipulating tensors
 - Tensors basic (algebraic) operations
 - Tensor - tensor operations
-- Reshape, transpose
-- Finding the min, max, mean, sum (aggregation)
+- Reshape, transpose a tensor
+- Finding the min, max, mean, sum (aggregation) of the tensor's elements
 - Setting and changing tensor datatype
-- Finding the positional maximum and minimum
+- Finding the positional maximum and minimum of a tensor
 
 ### Useful libraries, modules
 ##### Tensorflow
@@ -117,19 +117,6 @@ print("Elements along last axis of tensor:", rank_4_tensor.shape[-1])
 print("Total number of elements (2*3*4*5):", tf.size(rank_4_tensor).numpy()) # .numpy() converts to NumPy array
 ```
 
-##### Reshaping tensors
-```
-# Note that Python slicing also works on tensors
-# Get the dimension from each index except for the final one
-rank_4_tensor[:1, :1, :1, :]
-
-# Add an extra dimension (to the end) 1st solution
-rank_3_tensor = rank_2_tensor[..., tf.newaxis] # in Python "..." means "all dimensions prior to"
-
-# Add an extra dimension (to the end) 2nd solution
-tf.expand_dims(rank_2_tensor, axis=-1) # "-1" means last axis
-```
-
 ### Manipulating tensors
 ##### Tensors basic (algebraic) operations
 Basic, element wise operations with Python
@@ -215,4 +202,22 @@ tf.argmax(F)
 # Find the minimum element position of F
 tf.argmin(F)
 ```
+
+##### Adding, removing dimensions of a tensors
+```
+# Note that Python slicing also works on tensors
+# Get the dimension from each index except for the final one
+rank_4_tensor[:1, :1, :1, :]
+
+# Add an extra dimension (to the end) 1st solution
+rank_3_tensor = rank_2_tensor[..., tf.newaxis] # in Python "..." means "all dimensions prior to"
+
+# Add an extra dimension (to the end) 2nd solution
+tf.expand_dims(rank_2_tensor, axis=-1) # "-1" means last axis
+
+# Squeezing a tensor (removing all single dimensions)
+G_squeezed = tf.squeeze(G)
+```
+
+
 
