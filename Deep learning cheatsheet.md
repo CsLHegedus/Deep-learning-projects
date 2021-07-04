@@ -102,7 +102,7 @@ print("Elements along last axis of tensor:", rank_4_tensor.shape[-1])
 print("Total number of elements (2*3*4*5):", tf.size(rank_4_tensor).numpy()) # .numpy() converts to NumPy array
 ```
 
-##### Reshape tensors
+##### Reshaping tensors
 Note that slicing also works on tensors:
 ```
 # Get the dimension from each index except for the final one
