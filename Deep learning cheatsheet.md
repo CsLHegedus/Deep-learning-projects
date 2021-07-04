@@ -1,4 +1,4 @@
-Based on https://github.com/mrdbourke/tensorflow-deep-learning/
+Based (copied from) on https://github.com/mrdbourke/tensorflow-deep-learning/
 thanks for the course materials mrdbourke
 
 for the format I used this cheatsheet as inspiration (scroll down): https://zerotomastery.io/cheatsheets/python-cheat-sheet/
@@ -15,6 +15,10 @@ for the format I used this cheatsheet as inspiration (scroll down): https://zero
 - Reshaping tensors  
 ### Manipulating tensors
 - Tensors basic (algebraic) operations
+- Tensor - tensor operations
+- Reshape, transpose
+- Finding the min, max, mean, sum (aggregation)
+- Setting and changing tensor datatype
 
 ### Useful libraries, modules
 ##### Tensorflow
@@ -60,6 +64,10 @@ tf.Variable mutable tensor (like tf.Constant, just changeable)
 changeable_tensor = tf.Variable([10, 7])
 changeable_tensor[0].assign(7) # assign 7 to the first element
 
+another_matrix = tf.Variable([[10., 7.],
+                              [3., 2.],
+                              [8., 9.]], dtype=tf.float16) # specify the datatype with 'dtype'
+
 # Make a tensor of all ones
 tf.ones(shape=(3, 2))
 
@@ -72,6 +80,9 @@ Note: always set the random seed for reproducibility
 # Create random tensor 
 random_1 = tf.random.Generator.from_seed(42) # set the  seed for reproducibility
 random_1 = random_1.normal(shape=(3, 2)) # create tensor from a normal distribution 
+
+# Create a tensor with 50 random values between 0 and 100
+E = tf.constant(np.random.randint(low=0, high=100, size=50))
 
 # Change the order of elements of a tensor with local seed
 tf.random.shuffle(not_shuffled, seed=42) # local seed that only effects the codeline you write it in
@@ -139,7 +150,9 @@ tf.multiply(tensor, 10) # it won't rewrite the original tensor
 tf.math.multiply(
     x, y, name=None
 )
-
+```
+##### Tensor - tensor operations 
+```
 Matrix mutliplication with Python
 tensor @ tensor
 
@@ -148,7 +161,9 @@ tf.matmul(tensor, tensor)
 
 The dot product
 tf.tensordot(tf.transpose(X), Y, axes=1)
-
+```
+Reshape, transpose
+```
 Reshape
 tf.reshape(Y, shape=(2, 3))
 
@@ -158,4 +173,32 @@ tf.transpose(X)
 Example for more operations in one line
 tf.matmul(a=X, b=Y, transpose_a=True, transpose_b=False)
 ```
+##### Finding the min, max, mean, sum (aggregation)
+```
+# Get the absolute values
+tf.abs(D)
 
+# Find the minimum
+tf.reduce_min(E)
+
+# Find the maximum
+tf.reduce_max(E)
+
+# Find the mean
+tf.reduce_mean(E)
+
+# Find the sum
+tf.reduce_sum(E)
+```
+##### Setting and changing tensor datatype
+```
+# Create a new tensor with default datatype (float32)
+Default = tf.constant([1.7, 7.4])
+
+# Create a new tensor with float16 datatype 
+Non_Default = tf.constant([1.7, 7.4], dtype=tf.float16)
+
+# Change from float32 to float16 (reduced precision)
+Default_Changed = tf.cast(B, dtype=tf.float16)
+
+```
