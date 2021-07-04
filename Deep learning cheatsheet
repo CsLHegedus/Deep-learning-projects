@@ -8,7 +8,7 @@ important libraries
 tensors in tensorflow
 
 
-#Fast starter libraries
+# Fast starter libraries
 
 ## Tensorflow is the end to end library for data preprocessing, modelling, model service
 # Import TensorFlow
