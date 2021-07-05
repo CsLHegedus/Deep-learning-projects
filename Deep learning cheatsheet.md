@@ -44,6 +44,7 @@ it includes the cheat sheet for the notebooks below:
 - [Using tensorflow decorator](#using-tensorflow-decorator)
 - [How to compare models](#how-to-compare-models)
 - [How to save, load and check a saved a model](#how-to-save-load-and-check-a-saved-a-model)
+- [How to download a model from google colab](#how-to-download-a-model-from-google-colab)
 
 
 ### Useful libraries, modules
