@@ -17,12 +17,12 @@ it includes the 00_tensorflow_fundamentals sheet
 - [Tensor attributes](#tensor-attributes)
 - [Adding, removing dimensions of a tensor](#adding-removing-dimensions-of-a-tensor)  
 ### Manipulating tensors
-- [Tensors basic operations](#tensors_basic_oprations)
-- Tensor - tensor operations
-- Reshape, transpose a tensor
-- Finding the min, max, mean, sum (aggregation) of the tensor's elements
-- Setting and changing tensor datatype
-- Finding the positional maximum and minimum of a tensor
+- [Tensors basic operations](#tensors_basic_operations)
+- Tensor tensor operations
+- Reshape, transpose
+- Finding the min, max, mean, sum (aggregation) 
+- Setting and changing datatype
+- Finding the positional maximum and minimum
 ### Data preprocessing
 - One hot encoding
 ### Utilities
