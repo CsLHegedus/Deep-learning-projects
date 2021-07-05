@@ -418,7 +418,7 @@ tf.random.set_seed(42)
 # Build the model (3 layers, 100, 10, 1 units)
 insurance_model_3 = tf.keras.Sequential([
   tf.keras.layers.Dense(100, activation="Relu"), # hidden layer with Relu activation
-  tf.keras.layers.Dense(10, activation="Relu"), # hidden layer
+  tf.keras.layers.Dense(10, activation="Relu"), # hidden layer with Relu activation
   tf.keras.layers.Dense(1, activation="Sigmoid") # output layer with Sigmoid activation
 ])
 
@@ -437,5 +437,6 @@ insurance_model_3.evaluate(X_test_normal, y_test)
 # Do some predictions
 insurance_model_3.preds(Y_test_normal[0]) # let's use the first row of the test data
 ```
-
+[Typical architecture of a regression neural network](#typical-architecture-of-a-regression-neural-network)
+[Back to top](#contents)  
 
