@@ -21,7 +21,7 @@ it includes the 00_tensorflow_fundamentals sheet
 - [Tensor, tensor operations](#tensor-tensor-operations)
 - [Reshape, transpose](#reshape-transpose)
 - [Finding the min, max, mean, sum (aggregation)](#finding-the-min-max-mean-sum-aggregation)
-- [Setting and changing datatype]#setting-and-changing-datatype)
+- [Setting and changing datatype](#setting-and-changing-datatype)
 - [Finding the positional maximum and minimum](#finding-the-positional-maximum-and-minimum)
 ### Data preprocessing
 - [One hot encoding](#one-hot-encoding)
