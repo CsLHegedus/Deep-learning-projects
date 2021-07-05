@@ -622,7 +622,7 @@ insurance_model_3.evaluate(X_test_normal, y_test)
 # Do some predictions
 insurance_model_3.preds(Y_test_normal[0]) # let's use the first row of the test data
 ```
-[Typical architecture of a regression neural network](#typical-architecture-of-a-regression-neural-network)
+[Typical architecture of a regression neural network](#typical-architecture-of-a-regression-neural-network)  
 [Back to top](#contents)  
 
 
