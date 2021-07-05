@@ -28,6 +28,7 @@ it includes the cheat sheet for the notebooks below:
 - [Setting and changing datatype](#setting-and-changing-datatype)
 - [Finding the positional maximum and minimum](#finding-the-positional-maximum-and-minimum)
 ### Visualize any and everything
+- [What to visualize](#what to visualize)
 - [Visualizing the data, regression model](#visualizing-the-data-regression-model)
 ### Steps in preprocessing and modelling
 - [Typical workflow for modelling](#typical-workflow)
@@ -41,6 +42,7 @@ it includes the cheat sheet for the notebooks below:
 ### Utilities
 - [Numpy Tensorflow tensor conversions](#numpy-tensorflow-tensor-conversions)
 - [Using tensorflow decorator](#using-tensorflow-decorator)
+- [How to compare models](#how-to-compare-models)
 
 
 ### Useful libraries, modules
@@ -279,6 +281,7 @@ G_squeezed = tf.squeeze(G)
 ```
 [Back to top](#contents)
 ### Visualizing any and everything
+##### What to visualize
 - The data - what data are you working with? What does it look like?
 - The model itself - what does the architecture look like? What are the different shapes?
 - The training of a model - how does a model perform while it learns?
@@ -296,7 +299,7 @@ def plot_predictions(train_data=X_train,
   """
   plt.figure(figsize=(10, 7))
   # Plot training data in blue
-  plt.scatter(train_data, train_labels, c="b", label="Training data")
+  plt.scatter(train_data, train_labels, c="b", label="Training data") 
   # Plot test data in green
   plt.scatter(test_data, test_labels, c="g", label="Testing data")
   # Plot the predictions in red (predictions were made on the test data)
@@ -406,6 +409,43 @@ You can also find information about your GPU using:
 !nvidia-smi
 ```
 [Back to top](#contents)
+
+##### How to compare models
+```
+# Create shorter function names (why not)
+def mae(y_test, y_pred):
+  """
+  Calculuates mean absolute error between y_test and y_preds.
+  """
+  return tf.metrics.mean_absolute_error(y_test,
+                                        y_pred)
+  
+def mse(y_test, y_pred):
+  """
+  Calculates mean squared error between y_test and y_preds.
+  """
+  return tf.metrics.mean_squared_error(y_test,
+                                       y_pred)
+
+# Calculate model_1 metrics
+mae_1 = mae(y_test, y_preds_3.squeeze()).numpy()
+mse_1 = mse(y_test, y_preds_3.squeeze()).numpy()
+mae_1, mse_3
+
+# Repeat with the rest of the models
+# Create a nested list for the results
+model_results = [["model_1", mae_1, mse_1],
+                 ["model_2", mae_2, mse_2],
+                 ["model_3", mae_3, mae_3]]
+
+# Turn it into pandas dataframe and print it
+import pandas as pd
+all_results = pd.DataFrame(model_results, columns=["model", "mae", "mse"])
+all_results
+```
+TensorBoard - a component of the TensorFlow library to help track modelling experiments (we'll see this later).
+Weights & Biases - a tool for tracking all kinds of machine learning experiments (the good news for Weights & Biases is it plugs into TensorBoard).
+[Back to top](#contents)
 ### Typical workflow
 Preprocess the data
 ```
@@ -435,12 +475,15 @@ Compile the model (loss, optimizer, metrics)
 Fit the model (save history, set number of epochs, callbacks)
 Evaluate the model (metrics, predictions)
 
-Use
-more neurons
-more layers
-different layers
-different optimizer
-more epochs
+Compare the different models
+Save the model
+
+To improve use
+- more neurons
+- more layers
+- different layers
+- different optimizer
+- more epochs
 ```
 Optional
 ```
