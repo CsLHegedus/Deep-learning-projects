@@ -27,6 +27,8 @@ it includes the cheat sheet for the notebooks below:
 - [Finding the positional maximum and minimum](#finding-the-positional-maximum-and-minimum)
 ### Data preprocessing
 - [One hot encoding](#one-hot-encoding)
+### Typical neural network architectures
+- [Typical architecture of a regression neural network](#typical-architecture-of-a-regresison-neural-network)
 ### Utilities
 - [Numpy Tensorflow tensor conversions](#numpy-tensorflow-tensor-conversions)
 - [Using tensorflow decorator](#using-tensorflow-decorator)
@@ -299,3 +301,20 @@ You can also find information about your GPU using:
 !nvidia-smi
 ```
 [Back to top](#contents)
+
+##### Typical architecture of a regression neural network
+        "| **Hyperparameter** | **Typical value** |\n",
+        "| --- | --- |\n",
+        "| Input layer shape | Same shape as number of features (e.g. 3 for # bedrooms, # bathrooms, # car spaces in housing price prediction) |\n",
+        "| Hidden layer(s) | Problem specific, minimum = 1, maximum = unlimited |\n",
+        "| Neurons per hidden layer | Problem specific, generally 10 to 100 |\n",
+        "| Output layer shape | Same shape as desired prediction shape (e.g. 1 for house price) |\n",
+        "| Hidden activation | Usually [ReLU](https://www.kaggle.com/dansbecker/rectified-linear-units-relu-in-deep-learning) (rectified linear unit) |\n",
+        "| Output activation | None, ReLU, logistic/tanh |\n",
+        "| Loss function | [MSE](https://en.wikipedia.org/wiki/Mean_squared_error) (mean square error) or [MAE](https://en.wikipedia.org/wiki/Mean_absolute_error) (mean absolute error)/Huber (combination of MAE/MSE) if outliers |\n",
+        "| Optimizer | [SGD](https://www.tensorflow.org/api_docs/python/tf/keras/optimizers/SGD) (stochastic gradient descent), [Adam](https://www.tensorflow.org/api_docs/python/tf/keras/optimizers/Adam) |\n",
+        "\n",
+        "***Table 1:*** *Typical architecture of a regression network.* ***Source:*** *Adapted from page 293 of [Hands-On Machine Learning with Scikit-Learn, Keras & TensorFlow Book by Aurélien Géron](https://www.oreilly.com/library/view/hands-on-machine-learning/9781492032632/)*\n",
+
+
+
