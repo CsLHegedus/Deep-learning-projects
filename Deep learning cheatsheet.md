@@ -17,7 +17,7 @@ it includes the 00_tensorflow_fundamentals sheet
 - [Tensor attributes](#tensor-attributes)
 - [Adding, removing dimensions of a tensor](#adding-removing-dimensions-of-a-tensor)  
 ### Manipulating tensors
-- Tensors basic (algebraic) operations
+- [Tensors basic (algebraic) operations](#tensors_basic_(algebraic)_oprations)
 - Tensor - tensor operations
 - Reshape, transpose a tensor
 - Finding the min, max, mean, sum (aggregation) of the tensor's elements
