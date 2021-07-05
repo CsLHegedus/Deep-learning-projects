@@ -21,13 +21,13 @@ it includes the 00_tensorflow_fundamentals sheet
 - [Tensor, tensor operations](#tensor-tensor-operations)
 - [Reshape, transpose](#reshape-transpose)
 - [Finding the min, max, mean, sum (aggregation)](#finding-the-min-max-mean-sum-aggregation)
-- Setting and changing datatype
-- Finding the positional maximum and minimum
+- [Setting and changing datatype]#setting-and-changing-datatype)
+- [Finding the positional maximum and minimum](#finding-the-positional-maximum-and-minimum)
 ### Data preprocessing
-- One hot encoding
+- [One hot encoding](#one-hot-encoding)
 ### Utilities
-- Numpy - Tensorflow tensor conversions
-- Using tensorflow decorator
+- [Numpy Tensorflow tensor conversions](#numpy-tensorflow-tensor-conversions)
+- [Using tensorflow decorator](#using-tensorflow-decorator)
 
 
 ### Useful libraries, modules
@@ -40,13 +40,12 @@ print(tf.__version__) # find the version number (should be 2.x+)
 [Back to top](#contents)
 ```
 ##### Numpy
-[Contents](#contents)  
 Numpy is a library for numerical, tensor/array computations 
 ```
 # Import numpy
 import numpy as np
 ```
-
+[Back to top](#contents)  
 ### Tensors in Tensorflow
 ##### Tensors in Tensorflow
 Note that:  
@@ -265,7 +264,7 @@ tf.one_hot(some_list, depth=4, on_value="We're live!", off_value="Offline")
 ```
 [Back to top](#contents)
 ### Utilities
-##### Numpy - Tensorflow tensor conversions
+##### Numpy Tensorflow tensor conversions
 ```
 # Create a tensor from a NumPy array
 J = tf.constant(np.array([3., 7., 10.]))
