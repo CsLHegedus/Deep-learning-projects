@@ -9,6 +9,15 @@ it includes the cheat sheet for the notebooks below:
 01_neural_network_regression_in_tensorflow
 
 ## Contents  
+- [Useful libraries, modules](#useful-libraries-modules)
+- [Tensors in tensorflow](Tensors-in-tensorflow)
+- [Manipulating tensors](Manipulating tensors)
+- [Visualize any and everything](#visualize-any-and-everything)
+- [Steps in preprocessing and modelling](#steps-in-preprocessing-and-modelling)
+- [Data preprocessing](#data-preprocessing)
+- [Typical neural network architectures](#typical-neural-network-architectures)
+- [Utilities](#utilities)
+
 ### Useful libraries, modules  
 - [Tensorflow](#tensorflow)
 - [Numpy](#numpy)  
