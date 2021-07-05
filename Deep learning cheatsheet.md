@@ -27,7 +27,9 @@ it includes the cheat sheet for the notebooks below:
 - [Finding the min, max, mean, sum (aggregation)](#finding-the-min-max-mean-sum-aggregation)
 - [Setting and changing datatype](#setting-and-changing-datatype)
 - [Finding the positional maximum and minimum](#finding-the-positional-maximum-and-minimum)
-### General steps in preprocessing and modelling
+### Visualize any and everything
+- [Visualizing the data, regression model](#visualizing-the-data-regression-model)
+### Steps in preprocessing and modelling
 - [Typical workflow for modelling](#typical-workflow)
 ### Data preprocessing
 - [Train test split with python](#train-test-split-with-python)
@@ -274,6 +276,49 @@ tf.expand_dims(rank_2_tensor, axis=-1) # "-1" means last axis
 
 # Squeezing a tensor (removing all single dimensions)
 G_squeezed = tf.squeeze(G)
+```
+[Back to top](#contents)
+### Visualizing any and everything
+- The data - what data are you working with? What does it look like?
+- The model itself - what does the architecture look like? What are the different shapes?
+- The training of a model - how does a model perform while it learns?
+- The predictions of a model - how do the predictions of a model line up against the ground truth (the original labels)?
+##### Visualizing the data, regression model
+Visualize a regression model's data
+```
+def plot_predictions(train_data=X_train, 
+                     train_labels=y_train, 
+                     test_data=X_test, 
+                     test_labels=y_test, 
+                     predictions=y_preds):
+  """
+  Plots training data, test data and compares predictions.
+  """
+  plt.figure(figsize=(10, 7))
+  # Plot training data in blue
+  plt.scatter(train_data, train_labels, c="b", label="Training data")
+  # Plot test data in green
+  plt.scatter(test_data, test_labels, c="g", label="Testing data")
+  # Plot the predictions in red (predictions were made on the test data)
+  plt.scatter(test_data, predictions, c="r", label="Predictions")
+  # Show the legend
+  plt.legend();
+```
+[Back to top](#contents)
+##### Visualizing the model
+```
+# Visualize the model in commandline style
+model.summary()
+```
+Total params - total number of parameters in the model.
+Trainable parameters - these are the parameters (patterns) the model can update as it trains.
+Non-trainable parameters - these parameters aren't updated during training (this is typical when you bring in the already learned patterns from other models during transfer learning).
+
+Visualize the data with 2D plot
+```
+from tensorflow.keras.utils import plot_model
+
+plot_model(model, show_shapes=True)
 ```
 [Back to top](#contents)
 ### Data preprocessing
