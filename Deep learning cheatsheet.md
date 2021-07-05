@@ -28,7 +28,7 @@ it includes the cheat sheet for the notebooks below:
 - [Setting and changing datatype](#setting-and-changing-datatype)
 - [Finding the positional maximum and minimum](#finding-the-positional-maximum-and-minimum)
 ### Visualize any and everything
-- [What to visualize](#what to visualize)
+- [What to visualize](#what-to-visualize)
 - [Visualizing the data, regression model](#visualizing-the-data-regression-model)
 ### Steps in preprocessing and modelling
 - [Typical workflow for modelling](#typical-workflow)
