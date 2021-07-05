@@ -303,6 +303,8 @@ You can also find information about your GPU using:
 [Back to top](#contents)
 
 ### Typical architecture of neural networks
+The input shape is the shape of your data that goes into the model.
+The output shape is the shape of your data you want to come out of your model.
 ##### Typical architecture of a regression neural network
 | **Hyperparameter** | **Typical value** |
 | --- | --- |
