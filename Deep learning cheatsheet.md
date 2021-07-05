@@ -30,6 +30,8 @@ it includes the cheat sheet for the notebooks below:
 ### Visualize any and everything
 - [What to visualize](#what-to-visualize)
 - [Visualizing the data, regression model](#visualizing-the-data-regression-model)
+- [Visualizing the model](#visualize-the-model)
+- [Visualizing the loss curve](#visualize-loss-curve)
 ### Steps in preprocessing and modelling
 - [Typical workflow for modelling](#typical-workflow)
 ### Data preprocessing
@@ -325,6 +327,13 @@ Visualize the data with 2D plot
 from tensorflow.keras.utils import plot_model
 
 plot_model(model, show_shapes=True)
+```
+##### Visualizing the loss curve
+```
+# Plot history (also known as a loss curve)
+pd.DataFrame(history_1.history).plot()
+plt.ylabel("loss")
+plt.xlabel("epochs");
 ```
 [Back to top](#contents)
 ### Data preprocessing
