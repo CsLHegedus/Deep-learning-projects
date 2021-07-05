@@ -43,6 +43,7 @@ it includes the cheat sheet for the notebooks below:
 - [Numpy Tensorflow tensor conversions](#numpy-tensorflow-tensor-conversions)
 - [Using tensorflow decorator](#using-tensorflow-decorator)
 - [How to compare models](#how-to-compare-models)
+- [How to save, load and check a saved a model](#how-to-save-load-and-check-a-saved-a-model)
 
 
 ### Useful libraries, modules
@@ -446,6 +447,44 @@ all_results
 TensorBoard - a component of the TensorFlow library to help track modelling experiments (we'll see this later).
 Weights & Biases - a tool for tracking all kinds of machine learning experiments (the good news for Weights & Biases is it plugs into TensorBoard).
 [Back to top](#contents)
+##### How to save load and check a saved a model
+```
+There are two ways to save a model in TensorFlow:
+
+The SavedModel format (default).
+The HDF5 format.
+The main difference between the two is the SavedModel is automatically able to save custom objects (such as special layers) without additional modifications when loading the model back in.
+
+It's a good practice to load back the saved model and compare it to the original, just to be sure nothing went wrong
+```
+```
+# Save a model using the SavedModel format
+model_2.save('best_model_SavedModel_format')
+
+# Check it out - outputs a protobuf binary file (.pb) as well as other files
+!ls best_model_SavedModel_format
+
+# Load a model from the SavedModel format
+loaded_saved_model = tf.keras.models.load_model("best_model_SavedModel_format")
+loaded_saved_model.summary()
+```
+```
+# Save a model using the HDF5 format
+model_2.save("best_model_HDF5_format.h5") # note the addition of '.h5' on the end
+
+# Check it out
+!ls best_model_HDF5_format.h5
+
+# Load a model from the HDF5 format
+loaded_h5_model = tf.keras.models.load_model("best_model_HDF5_format.h5")
+loaded_h5_model.summary()
+```
+```
+# Compare model_2 with the SavedModel version (should return True)
+model_2_preds = model_2.predict(X_test)
+saved_model_preds = loaded_saved_model.predict(X_test)
+mae(y_test, saved_model_preds.squeeze()).numpy() == mae(y_test, model_2_preds.squeeze()).numpy()
+```
 ### Typical workflow
 Preprocess the data
 ```
@@ -468,7 +507,7 @@ Scikit_learn and tensorflow also has functions for imputation with variable abil
 Normalize the data if its values isn't between 0 and 1 for faster convergence (learning).
 Use scikitlearn or a normalization layer in the model
 ```
-Modelling
+Modeling
 ```
 Create a model (layers, activation functions)
 Compile the model (loss, optimizer, metrics)
