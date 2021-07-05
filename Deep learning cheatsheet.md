@@ -20,7 +20,7 @@ it includes the 00_tensorflow_fundamentals sheet
 - [Basic elementwise operations](#basic-elementwise-operations)
 - [Tensor, tensor operations](#tensor-tensor-operations)
 - [Reshape, transpose](#reshape-transpose)
-- [Finding the min, max, mean, sum (aggregation)](#finding-the-min-max-mean-sum-(aggregation))
+- [Finding the min, max, mean, sum (aggregation)](#finding-the-min-max-mean-sum-aggregation)
 - Setting and changing datatype
 - Finding the positional maximum and minimum
 ### Data preprocessing
@@ -170,7 +170,7 @@ tf.sqrt(H)
 tf.math.log(H)
 ```
 [Back to top](#contents)
-##### Tensor - tensor operations 
+##### Tensor, tensor operations 
 ```
 Matrix mutliplication with Python
 tensor @ tensor
