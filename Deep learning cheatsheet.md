@@ -181,7 +181,7 @@ tf.matmul(tensor, tensor)
 The dot product
 tf.tensordot(tf.transpose(X), Y, axes=1)
 ```
-Reshape, transpose
+##### Reshape, transpose
 ```
 Reshape
 tf.reshape(Y, shape=(2, 3))
