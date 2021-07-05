@@ -10,8 +10,8 @@ it includes the cheat sheet for the notebooks below:
 
 ## Contents  
 - [Useful libraries, modules](#useful-libraries-modules)
-- [Tensors in tensorflow](Tensors-in-tensorflow)
-- [Manipulating tensors](Manipulating tensors)
+- [Tensors in tensorflow](#tensors-in-tensorflow)
+- [Manipulating tensors](#manipulating-tensors)
 - [Visualize any and everything](#visualize-any-and-everything)
 - [Steps in preprocessing and modelling](#steps-in-preprocessing-and-modelling)
 - [Data preprocessing](#data-preprocessing)
