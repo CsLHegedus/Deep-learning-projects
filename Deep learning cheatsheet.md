@@ -30,6 +30,7 @@ it includes the cheat sheet for the notebooks below:
 ### General steps in preprocessing and modelling
 - [Typical workflow for modelling](#typical-workflow)
 ### Data preprocessing
+- [Train test split with python](#train-test-split-with-python)
 - [One hot encoding with tensorflow](#one-hot-encoding-with-tensorflow)
 - [One hot encoding and data normalization with scikitlearn](#one-hot-encoding-and-data-normalization-with-scikitlearn)
 ### Typical neural network architectures
@@ -276,6 +277,18 @@ G_squeezed = tf.squeeze(G)
 ```
 [Back to top](#contents)
 ### Data preprocessing
+##### Train test split with python
+Get your data into train and test sets. Train for training, test for testing, easy isn't it?
+```
+# Split 50 data rows into train and test sets
+X_train = X[:40] # first 40 examples (80% of data)
+y_train = y[:40]
+
+X_test = X[40:] # last 10 examples (20% of data)
+y_test = y[40:]
+
+len(X_train), len(X_test) # check the sets
+```
 ##### One hot encoding with tensorflow
 Turn string categories (stuff, not_stuff) into numbers ([[1,0],[0,1]])
 ```
@@ -412,6 +425,7 @@ original source: Adapted from page 293 of [Hands-On Machine Learning with Scikit
 [Back to top](#contents)  
 ##### Regression model example
 ```
+# let's use the insurance dataset (you )
 # Set random seed
 tf.random.set_seed(42)
 
@@ -419,7 +433,7 @@ tf.random.set_seed(42)
 insurance_model_3 = tf.keras.Sequential([
   tf.keras.layers.Dense(100, activation="Relu"), # hidden layer with Relu activation
   tf.keras.layers.Dense(10, activation="Relu"), # hidden layer with Relu activation
-  tf.keras.layers.Dense(1, activation="Sigmoid") # output layer with Sigmoid activation
+  tf.keras.layers.Dense(1, activation="tanh") # output layer with tanh activation
 ])
 
 # Compile the model
@@ -439,4 +453,7 @@ insurance_model_3.preds(Y_test_normal[0]) # let's use the first row of the test 
 ```
 [Typical architecture of a regression neural network](#typical-architecture-of-a-regression-neural-network)
 [Back to top](#contents)  
+
+
+
 
