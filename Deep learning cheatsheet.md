@@ -12,6 +12,7 @@ it includes the cheat sheet for the notebooks below:
 ### Useful libraries, modules  
 - [Tensorflow](#tensorflow)
 - [Numpy](#numpy)  
+- [Matplotlib](#matplotlib)
 ### Tensors in tensorflow  
 - [Constant tensor](#constant-tensor)  
 - [Variable tensor](#variable-tensor) 
@@ -25,6 +26,8 @@ it includes the cheat sheet for the notebooks below:
 - [Finding the min, max, mean, sum (aggregation)](#finding-the-min-max-mean-sum-aggregation)
 - [Setting and changing datatype](#setting-and-changing-datatype)
 - [Finding the positional maximum and minimum](#finding-the-positional-maximum-and-minimum)
+### Typical workflow for modelling
+- [Typical workflow for modelling](#typical-workflow-for-modelling)
 ### Data preprocessing
 - [One hot encoding](#one-hot-encoding)
 ### Typical neural network architectures
@@ -50,6 +53,12 @@ Numpy is a library for numerical, tensor/array computations
 import numpy as np
 ```
 [Back to top](#contents)  
+### Matplotlib
+Matbplotlib is a library to visualize, evaulate your data
+```
+# Import matplotlib
+import matplotlib.pyplot as plt
+```
 ### Tensors in Tensorflow
 ##### Tensors in Tensorflow
 Note that:  
