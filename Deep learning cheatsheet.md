@@ -34,6 +34,7 @@ it includes the cheat sheet for the notebooks below:
 - [Typical workflow for modelling](#typical-workflow)
 ### Data preprocessing
 - [Train test split with python](#train-test-split-with-python)
+- [One hot encoding with pandas](#one-hot-encoding-with-pandas)
 - [One hot encoding with tensorflow](#one-hot-encoding-with-tensorflow)
 - [One hot encoding and data normalization with scikitlearn](#one-hot-encoding-and-data-normalization-with-scikitlearn)
 ### Typical neural network architectures
@@ -339,6 +340,21 @@ y_test = y[40:]
 
 len(X_train), len(X_test) # check the sets
 ```
+##### Train test split with scikitlearn
+Get your data into train and test sets. Train for training, test for testing, easy isn't it?
+```
+# Create training and test sets
+from sklearn.model_selection import train_test_split
+X_train, X_test, y_train, y_test = train_test_split(X, 
+                                                    y, 
+                                                    test_size=0.2, 
+                                                    random_state=42) # set random state for reproducible splits
+```
+##### One hot encoding with pandas
+Turn string categories (stuff, not_stuff) into numbers ([[1,0],[0,1]])
+```
+insurance_one_hot = pd.get_dummies(insurance)
+```
 ##### One hot encoding with tensorflow
 Turn string categories (stuff, not_stuff) into numbers ([[1,0],[0,1]])
 ```
@@ -353,6 +369,7 @@ tf.one_hot(some_list, depth=4, on_value="We're live!", off_value="Offline")
 ```
 [Back to top](#contents)
 ##### One hot encoding and data normalization with scikitlearn
+Turn string categories (stuff, not_stuff) into numbers ([[1,0],[0,1]])
 ```
 from sklearn.compose import make_column_transformer
 from sklearn.preprocessing import MinMaxScaler, OneHotEncoder
