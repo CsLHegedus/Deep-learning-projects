@@ -17,7 +17,7 @@ it includes the 00_tensorflow_fundamentals sheet
 - [Tensor attributes](#tensor-attributes)
 - [Adding, removing dimensions of a tensor](#adding-removing-dimensions-of-a-tensor)  
 ### Manipulating tensors
-- [Tensors basic (algebraic) operations](#tensors_basic_algebraic_oprations)
+- [Tensors basic operations](#tensors_basic_oprations)
 - Tensor - tensor operations
 - Reshape, transpose a tensor
 - Finding the min, max, mean, sum (aggregation) of the tensor's elements
@@ -135,7 +135,7 @@ print("Total number of elements (2*3*4*5):", tf.size(rank_4_tensor).numpy()) # .
 ```
 [Back to top](#contents)
 ### Manipulating tensors
-##### Tensors basic (algebraic) operations
+##### Tensors basic operations
 Basic, element wise operations with Python
 ```
 # Elementwise addition operator
