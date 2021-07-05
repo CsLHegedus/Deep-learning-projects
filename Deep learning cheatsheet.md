@@ -17,10 +17,10 @@ it includes the 00_tensorflow_fundamentals sheet
 - [Tensor attributes](#tensor-attributes)
 - [Adding, removing dimensions of a tensor](#adding-removing-dimensions-of-a-tensor)  
 ### Manipulating tensors
-- [Tensors basic operations](#tensors_basic_operations)
-- Tensor tensor operations
-- Reshape, transpose
-- Finding the min, max, mean, sum (aggregation) 
+- [Basic elementwise operations](#basic-elementwise-operations)
+- [Tensor, tensor operations](#tensor-tensor-operations)
+- [Reshape, transpose](#reshape-transpose)
+- [Finding the min, max, mean, sum (aggregation)](#finding-the-min-max-mean-sum-(aggregation))
 - Setting and changing datatype
 - Finding the positional maximum and minimum
 ### Data preprocessing
@@ -135,7 +135,7 @@ print("Total number of elements (2*3*4*5):", tf.size(rank_4_tensor).numpy()) # .
 ```
 [Back to top](#contents)
 ### Manipulating tensors
-##### Tensors basic operations
+##### Basic elementwise operations
 Basic, element wise operations with Python
 ```
 # Elementwise addition operator
