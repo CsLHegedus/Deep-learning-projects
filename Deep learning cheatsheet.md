@@ -26,8 +26,8 @@ it includes the cheat sheet for the notebooks below:
 - [Finding the min, max, mean, sum (aggregation)](#finding-the-min-max-mean-sum-aggregation)
 - [Setting and changing datatype](#setting-and-changing-datatype)
 - [Finding the positional maximum and minimum](#finding-the-positional-maximum-and-minimum)
-### Typical workflow for modelling
-- [Typical workflow for modelling](#typical-workflow-for-modelling)
+### General steps in preprocessing and modelling
+- [Typical workflow for modelling](#typical-workflow)
 ### Data preprocessing
 - [One hot encoding](#one-hot-encoding)
 ### Typical neural network architectures
@@ -309,7 +309,50 @@ print(tf.config.list_physical_devices('GPU'))
 You can also find information about your GPU using:
 !nvidia-smi
 ```
-[Back to top](#contents)
+[Back to top](#contents)0
+### Typical workflow
+Preprocess the data
+```
+Visualize your data when possible.
+
+Load the data with pandas
+Is it too big? use chunks
+
+Check for missing data
+A feature vector (column) has less than 10% data coverage (lines with text)? Drop it.
+A feature vector has missing data? use data imputation (fill missing values) use pandas or scikitlearn.
+
+A feature has 
+-numerical values only? 
+Leave it.
+-categorical or Ordinal values? 
+One_Hot encode it. In pandas you can do it in one step with imputation, use column transformer.  
+Scikit_learn and tensorflow also has functions for imputation with variable abilities
+
+Normalize the data if its values isn't between 0 and 1 for faster convergence (learning).
+Use scikitlearn or a normalization layer in the model
+```
+Modelling
+```
+Create a model (layers, activation functions)
+Compile the model (loss, optimizer, metrics)
+Fit the model (save history, set number of epochs, callbacks)
+Evaluate the model
+
+Use
+more neurons
+more layers
+different layers
+different optimizer
+more epochs
+```
+Optional
+```
+If you train the model for long time (1000+ epochs) you might want to
+- determine the optimal starting learning rate
+- use early callback to stop training when the model doesn't learn much anymore
+- use checkpoints the save the progress so if something happens you don't have to train from scratch
+```
 
 ### Typical architecture of neural networks
 The input shape is the shape of your data that goes into the model.  
