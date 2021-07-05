@@ -13,6 +13,7 @@ it includes the cheat sheet for the notebooks below:
 - [Tensorflow](#tensorflow)
 - [Numpy](#numpy)  
 - [Matplotlib](#matplotlib)
+- [Scikitlearn](#scikitlearn)
 ### Tensors in tensorflow  
 - [Constant tensor](#constant-tensor)  
 - [Variable tensor](#variable-tensor) 
@@ -53,12 +54,14 @@ Numpy is a library for numerical, tensor/array computations
 import numpy as np
 ```
 [Back to top](#contents)  
-### Matplotlib
+##### Matplotlib
 Matbplotlib is a library to visualize, evaulate your data
 ```
 # Import matplotlib
 import matplotlib.pyplot as plt
 ```
+##### Scikitlearn
+
 ### Tensors in Tensorflow
 ##### Tensors in Tensorflow
 Note that:  
@@ -309,7 +312,7 @@ print(tf.config.list_physical_devices('GPU'))
 You can also find information about your GPU using:
 !nvidia-smi
 ```
-[Back to top](#contents)0
+[Back to top](#contents)
 ### Typical workflow
 Preprocess the data
 ```
@@ -353,7 +356,7 @@ If you train the model for long time (1000+ epochs) you might want to
 - use early callback to stop training when the model doesn't learn much anymore
 - use checkpoints the save the progress so if something happens you don't have to train from scratch
 ```
-
+[Back to top](#contents)
 ### Typical architecture of neural networks
 The input shape is the shape of your data that goes into the model.  
 The output shape is the shape of your data you want to come out of your model.  
@@ -372,5 +375,6 @@ The output shape is the shape of your data you want to come out of your model.
 original source: Adapted from page 293 of [Hands-On Machine Learning with Scikit-Learn, Keras & TensorFlow Book by Aurélien Géron](https://www.oreilly.com/library/view/hands-on-machine-learning/9781492032632/)
         
 [Back to top](#contents)  
+
 
 
