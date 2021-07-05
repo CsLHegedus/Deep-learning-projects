@@ -18,40 +18,40 @@ it includes the cheat sheet for the notebooks below:
 - [Typical neural network architectures](#typical-neural-network-architectures)
 - [Utilities](#utilities)
 
-### Useful libraries, modules  
+#### Useful libraries, modules  
 - [Tensorflow](#tensorflow)
 - [Numpy](#numpy)  
 - [Matplotlib](#matplotlib)
 - [Scikitlearn](#scikitlearn)
-### Tensors in tensorflow  
+#### Tensors in tensorflow  
 - [Constant tensor](#constant-tensor)  
 - [Variable tensor](#variable-tensor) 
 - [Random tensors and shuffling](#random-tensors-and-shuffling)  
 - [Tensor attributes](#tensor-attributes)
 - [Adding, removing dimensions of a tensor](#adding-removing-dimensions-of-a-tensor)  
-### Manipulating tensors
+#### Manipulating tensors
 - [Basic elementwise operations](#basic-elementwise-operations)
 - [Tensor, tensor operations](#tensor-tensor-operations)
 - [Reshape, transpose](#reshape-transpose)
 - [Finding the min, max, mean, sum (aggregation)](#finding-the-min-max-mean-sum-aggregation)
 - [Setting and changing datatype](#setting-and-changing-datatype)
 - [Finding the positional maximum and minimum](#finding-the-positional-maximum-and-minimum)
-### Visualize any and everything
+#### Visualize any and everything
 - [What to visualize](#what-to-visualize)
 - [Visualizing the data, regression model](#visualizing-the-data-regression-model)
 - [Visualizing the model](#visualize-the-model)
 - [Visualizing the loss curve](#visualize-loss-curve)
-### Steps in preprocessing and modelling
+#### Steps in preprocessing and modelling
 - [Typical workflow for modelling](#typical-workflow)
-### Data preprocessing
+#### Data preprocessing
 - [Train test split with python](#train-test-split-with-python)
 - [One hot encoding with pandas](#one-hot-encoding-with-pandas)
 - [One hot encoding with tensorflow](#one-hot-encoding-with-tensorflow)
 - [One hot encoding and data normalization with scikitlearn](#one-hot-encoding-and-data-normalization-with-scikitlearn)
-### Typical neural network architectures
+#### Typical neural network architectures
 - [Typical architecture of a regression neural network](#typical-architecture-of-a-regression-neural-network)
 - [Regression model example](#regression-model-example)
-### Utilities
+#### Utilities
 - [Numpy Tensorflow tensor conversions](#numpy-tensorflow-tensor-conversions)
 - [Using tensorflow decorator](#using-tensorflow-decorator)
 - [How to compare models](#how-to-compare-models)
