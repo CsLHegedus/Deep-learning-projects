@@ -30,9 +30,11 @@ it includes the cheat sheet for the notebooks below:
 ### General steps in preprocessing and modelling
 - [Typical workflow for modelling](#typical-workflow)
 ### Data preprocessing
-- [One hot encoding](#one-hot-encoding)
+- [One hot encoding with tensorflow](#one-hot-encoding-with-tensorflow)
+- [One hot encoding and data normalization with scikitlearn](#one-hot-encoding-and-data-normalization-with-scikitlearn)
 ### Typical neural network architectures
-- [Typical architecture of a regression neural network](#typical-architecture-of-a-regresison-neural-network)
+- [Typical architecture of a regression neural network](#typical-architecture-of-a-regression-neural-network)
+- [Regression model example](#regression-model-example)
 ### Utilities
 - [Numpy Tensorflow tensor conversions](#numpy-tensorflow-tensor-conversions)
 - [Using tensorflow decorator](#using-tensorflow-decorator)
@@ -55,13 +57,20 @@ import numpy as np
 ```
 [Back to top](#contents)  
 ##### Matplotlib
-Matbplotlib is a library to visualize, evaulate your data
+Matplotlib is a library to visualize, evaulate your data
 ```
 # Import matplotlib
 import matplotlib.pyplot as plt
 ```
+[Back to top](#contents)  
 ##### Scikitlearn
-
+Scikitlearn is a library for data preprocessing and machine learning models
+```
+#For data preprocessing
+from sklearn.compose import make_column_transformer
+from sklearn.preprocessing import MinMaxScaler, OneHotEncoder
+```
+[Back to top](#contents)  
 ### Tensors in Tensorflow
 ##### Tensors in Tensorflow
 Note that:  
@@ -267,7 +276,7 @@ G_squeezed = tf.squeeze(G)
 ```
 [Back to top](#contents)
 ### Data preprocessing
-##### One hot encoding
+##### One hot encoding with tensorflow
 Turn string categories (stuff, not_stuff) into numbers ([[1,0],[0,1]])
 ```
 # Create a list of indices
@@ -280,6 +289,32 @@ tf.one_hot(some_list, depth=4) # 4 is the number of different categories you hav
 tf.one_hot(some_list, depth=4, on_value="We're live!", off_value="Offline")
 ```
 [Back to top](#contents)
+##### One hot encoding and data normalization with scikitlearn
+```
+from sklearn.compose import make_column_transformer
+from sklearn.preprocessing import MinMaxScaler, OneHotEncoder
+
+# Create column transformer (this will help us normalize/preprocess our data)
+ct = make_column_transformer(
+    (MinMaxScaler(), ["age", "bmi", "children"]), # get all values between 0 and 1
+    (OneHotEncoder(handle_unknown="ignore"), ["sex", "smoker", "region"])
+)
+
+# Create X & y
+X = insurance.drop("charges", axis=1)
+y = insurance["charges"]
+
+# Build our train and test sets (use random state to ensure same split as before)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Fit column transformer on the training data only (doing so on test data would result in data leakage)
+ct.fit(X_train)
+
+# Transform training and test data with normalization (MinMaxScalar) and one hot encoding (OneHotEncoder)
+X_train_normal = ct.transform(X_train)
+X_test_normal = ct.transform(X_test)
+
+```
 ### Utilities
 ##### Numpy Tensorflow tensor conversions
 ```
@@ -340,7 +375,7 @@ Modelling
 Create a model (layers, activation functions)
 Compile the model (loss, optimizer, metrics)
 Fit the model (save history, set number of epochs, callbacks)
-Evaluate the model
+Evaluate the model (metrics, predictions)
 
 Use
 more neurons
@@ -375,6 +410,32 @@ The output shape is the shape of your data you want to come out of your model.
 original source: Adapted from page 293 of [Hands-On Machine Learning with Scikit-Learn, Keras & TensorFlow Book by Aurélien Géron](https://www.oreilly.com/library/view/hands-on-machine-learning/9781492032632/)
         
 [Back to top](#contents)  
+##### Regression model example
+```
+# Set random seed
+tf.random.set_seed(42)
 
+# Build the model (3 layers, 100, 10, 1 units)
+insurance_model_3 = tf.keras.Sequential([
+  tf.keras.layers.Dense(100, activation="Relu"), # hidden layer with Relu activation
+  tf.keras.layers.Dense(10, activation="Relu"), # hidden layer
+  tf.keras.layers.Dense(1, activation="Sigmoid") # output layer with Sigmoid activation
+])
+
+# Compile the model
+insurance_model_3.compile(loss=tf.keras.losses.mae,
+                          optimizer=tf.keras.optimizers.Adam(lr=0.001), # using default learning rate
+                          metrics=['mae'])
+
+# Fit the model for 200 epochs (same as insurance_model_2)
+# verbose=0 means that it won't write out the training log
+insurance_model_3.fit(X_train_normal, y_train, epochs=200, verbose=0)
+
+# Evaluate the model
+insurance_model_3.evaluate(X_test_normal, y_test)
+
+# Do some predictions
+insurance_model_3.preds(Y_test_normal[0]) # let's use the first row of the test data
+```
 
 
