@@ -521,6 +521,12 @@ model_2_preds = model_2.predict(X_test)
 saved_model_preds = loaded_saved_model.predict(X_test)
 mae(y_test, saved_model_preds.squeeze()).numpy() == mae(y_test, model_2_preds.squeeze()).numpy()
 ```
+### How to download a model from google colab
+```
+# Download the model (or any file) from Google Colab
+from google.colab import files
+files.download("best_model_HDF5_format.h5")
+```
 ### Typical workflow
 Check the data, figure out the problem type (regression, binary or multi classification etc.)
 
