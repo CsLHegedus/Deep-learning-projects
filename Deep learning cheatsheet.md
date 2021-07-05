@@ -486,6 +486,8 @@ saved_model_preds = loaded_saved_model.predict(X_test)
 mae(y_test, saved_model_preds.squeeze()).numpy() == mae(y_test, model_2_preds.squeeze()).numpy()
 ```
 ### Typical workflow
+Check the data, figure out the problem type (regression, binary or multi classification etc.)
+
 Preprocess the data
 ```
 Visualize your data when possible.
