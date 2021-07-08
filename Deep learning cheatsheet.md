@@ -42,9 +42,9 @@ it includes the cheat sheet for the notebooks below:
 - [What to visualize](#what-to-visualize)
 - [Visualizing the data, regression model](#visualizing-the-data-regression-model)
 - [Visualizing the data, classification model](#visualizing-the-data-classification-model)
-- Visualizing the data image multiclass classification](#visualizing-the-data-image-multiclass-classification)
-- [Visualizing the model](#visualize-the-model)
-- [Visualizing the loss curve](#visualize-loss-curve)
+- [Visualizing the data, image multiclass classification](#visualizing-the-data-image-multiclass-classification)
+- [Visualizing the model](#visualizing-the-model)
+- [Visualizing the loss curve](#visualizing-loss-curve)
 #### Steps in preprocessing and modelling
 - [Typical workflow for modelling](#typical-workflow)
 #### Data preprocessing
