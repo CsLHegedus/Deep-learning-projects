@@ -55,6 +55,7 @@ it includes the cheat sheet for the notebooks below:
 - [Typical architecture of a regression neural network](#typical-architecture-of-a-regression-neural-network)
 - [Regression model example](#regression-model-example)
 - [Typical architecture of a classification neural network](#typical-architecture-of-a-classification-neural-network)
+- [Find ideal learning rate](#find-ideal-learning-rate)
 
 #### Utilities
 - [Numpy Tensorflow tensor conversions](#numpy-tensorflow-tensor-conversions)
@@ -633,6 +634,7 @@ Modeling
 Create a model (layers, activation functions)
 Compile the model (loss, optimizer, metrics)
 Fit the model (save history, set number of epochs, callbacks)
+(set an experiment to find the ideal learning rate)
 Evaluate the model (metrics, predictions)
 
 Compare the different models
@@ -705,9 +707,13 @@ insurance_model_3.compile(loss=tf.keras.losses.mae,
                           optimizer=tf.keras.optimizers.Adam(lr=0.001), # using default learning rate
                           metrics=['mae'])
 
+# Create a learning rate scheduler callback
+lr_scheduler = tf.keras.callbacks.LearningRateScheduler(lambda epoch: 1e-4 * 10**(epoch/20)) # traverse a set of learning rate values starting from 1e-4, increasing by 10**(epoch/20) every epoch
+
 # Fit the model for 200 epochs (same as insurance_model_2)
 # verbose=0 means that it won't write out the training log
-insurance_model_3.fit(X_train_normal, y_train, epochs=200, verbose=0)
+insurance_model_3.fit(X_train_normal, y_train, epochs=200, verbose=0,
+                      callbacks=[lr_scheduler])
 
 # Evaluate the model
 insurance_model_3.evaluate(X_test_normal, y_test)
@@ -718,6 +724,30 @@ insurance_model_3.preds(Y_test_normal[0]) # let's use the first row of the test 
 [Typical architecture of a regression neural network](#typical-architecture-of-a-regression-neural-network)  
 [Back to top](#contents)  
 
+##### Find ideal learning rate
+```
+# Create a learning rate scheduler callback
+lr_scheduler = tf.keras.callbacks.LearningRateScheduler(lambda epoch: 1e-4 * 10**(epoch/20)) # traverse a set of learning rate values starting from 1e-4, increasing by 10**(epoch/20) every epoch
 
+# Fit the model (passing the lr_scheduler callback)
+history = model_9.fit(X_train, 
+                      y_train, 
+                      epochs=100,
+                      callbacks=[lr_scheduler])
+
+# Plot the learning rate versus the loss
+lrs = 1e-4 * (10 ** (np.arange(100)/20))
+plt.figure(figsize=(10, 7))
+plt.semilogx(lrs, history.history["loss"]) # we want the x-axis (learning rate) to be log scale
+plt.xlabel("Learning Rate")
+plt.ylabel("Loss")
+plt.title("Learning rate vs. loss");
+```
+To figure out the ideal value of the learning rate (at least the ideal value to begin training our model), the rule of thumb is to take the learning rate value where the loss is still decreasing but not quite flattened out (usually about 10x smaller than the bottom of the curve).
+
+Example of other typical learning rate values
+10**0, 10**-1, 10**-2, 10**-3, 1e-4
+
+[Back to top](#contents)  
 
 
