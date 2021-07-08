@@ -42,6 +42,7 @@ it includes the cheat sheet for the notebooks below:
 - [What to visualize](#what-to-visualize)
 - [Visualizing the data, regression model](#visualizing-the-data-regression-model)
 - [Visualizing the data, classification model](#visualizing-the-data-classification-model)
+- Visualizing the data image multiclass classification](#visualizing-the-data-image-multiclass-classification)
 - [Visualizing the model](#visualize-the-model)
 - [Visualizing the loss curve](#visualize-loss-curve)
 #### Steps in preprocessing and modelling
@@ -392,8 +393,63 @@ plt.title("Test")
 plot_decision_boundary(model_8, X=X_test, y=y_test)
 plt.show()
 ```
-##### 
-model
+custom confusion matrix
+```
+# Note: The following confusion matrix code is a remix of Scikit-Learn's 
+# plot_confusion_matrix function - https://scikit-learn.org/stable/modules/generated/sklearn.metrics.plot_confusion_matrix.html
+# and Made with ML's introductory notebook - https://github.com/GokuMohandas/MadeWithML/blob/main/notebooks/08_Neural_Networks.ipynb 
+
+figsize = (10, 10)
+
+# Create the confusion matrix
+cm = confusion_matrix(y_test, tf.round(y_preds))
+cm_norm = cm.astype("float") / cm.sum(axis=1)[:, np.newaxis] # normalize it
+n_classes = cm.shape[0]
+
+# Let's prettify it
+fig, ax = plt.subplots(figsize=figsize)
+# Create a matrix plot
+cax = ax.matshow(cm, cmap=plt.cm.Blues) # https://matplotlib.org/3.2.0/api/_as_gen/matplotlib.axes.Axes.matshow.html
+fig.colorbar(cax)
+
+# Create classes
+classes = False
+
+if classes:
+  labels = classes
+else:
+  labels = np.arange(cm.shape[0])
+
+# Label the axes
+ax.set(title="Confusion Matrix",
+       xlabel="Predicted label",
+       ylabel="True label",
+       xticks=np.arange(n_classes),
+       yticks=np.arange(n_classes),
+       xticklabels=labels,
+       yticklabels=labels)
+
+# Set x-axis labels to bottom
+ax.xaxis.set_label_position("bottom")
+ax.xaxis.tick_bottom()
+
+# Adjust label size
+ax.xaxis.label.set_size(20)
+ax.yaxis.label.set_size(20)
+ax.title.set_size(20)
+
+# Set threshold for different colors
+threshold = (cm.max() + cm.min()) / 2.
+
+# Plot the text on each cell
+for i, j in itertools.product(range(cm.shape[0]), range(cm.shape[1])):
+  plt.text(j, i, f"{cm[i, j]} ({cm_norm[i, j]*100:.1f}%)",
+           horizontalalignment="center",
+           color="white" if cm[i, j] > threshold else "black",
+           size=15)
+```
+##### Visualizing the data, image multiclass classification
+##### Visualizing the model
 ```
 # Visualize the model in commandline style
 model.summary()
