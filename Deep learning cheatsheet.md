@@ -40,6 +40,7 @@ it includes the cheat sheet for the notebooks below:
 #### Visualize any and everything
 - [What to visualize](#what-to-visualize)
 - [Visualizing the data, regression model](#visualizing-the-data-regression-model)
+- [Visualizing the data, classification model](#visualizing-the-data-classification-model)
 - [Visualizing the model](#visualize-the-model)
 - [Visualizing the loss curve](#visualize-loss-curve)
 #### Steps in preprocessing and modelling
@@ -52,13 +53,15 @@ it includes the cheat sheet for the notebooks below:
 #### Typical neural network architectures
 - [Typical architecture of a regression neural network](#typical-architecture-of-a-regression-neural-network)
 - [Regression model example](#regression-model-example)
+- [Typical architecture of a classification neural network](#typical-architecture-of-a-classification-neural-network)
+
 #### Utilities
 - [Numpy Tensorflow tensor conversions](#numpy-tensorflow-tensor-conversions)
 - [Using tensorflow decorator](#using-tensorflow-decorator)
 - [How to compare models](#how-to-compare-models)
 - [How to save, load and check a saved a model](#how-to-save-load-and-check-a-saved-a-model)
 - [How to download a model from google colab](#how-to-download-a-model-from-google-colab)
-- [Toy datasets](#toy_datasets)
+- [datasets](#toy_datasets)
 
 
 ### Useful libraries, modules
@@ -327,7 +330,55 @@ def plot_predictions(train_data=X_train,
   plt.legend();
 ```
 [Back to top](#contents)
-##### Visualizing the model
+##### Visualizing the data, classification model
+Binary classification
+```
+# Visualize data with a plot
+import matplotlib.pyplot as plt
+plt.scatter(X[:, 0], X[:, 1], c=y, cmap=plt.cm.RdYlBu);
+```
+```
+def plot_decision_boundary(model, X, y):
+  """
+  Plots the decision boundary created by a model predicting on X.
+  This function has been adapted from two phenomenal resources:
+   1. CS231n - https://cs231n.github.io/neural-networks-case-study/
+   2. Made with ML basics - https://github.com/GokuMohandas/MadeWithML/blob/main/notebooks/08_Neural_Networks.ipynb
+  """
+  # Define the axis boundaries of the plot and create a meshgrid
+  x_min, x_max = X[:, 0].min() - 0.1, X[:, 0].max() + 0.1
+  y_min, y_max = X[:, 1].min() - 0.1, X[:, 1].max() + 0.1
+  xx, yy = np.meshgrid(np.linspace(x_min, x_max, 100),
+                       np.linspace(y_min, y_max, 100))
+  
+  # Create X values (we're going to predict on all of these)
+  x_in = np.c_[xx.ravel(), yy.ravel()] # stack 2D arrays together: https://numpy.org/devdocs/reference/generated/numpy.c_.html
+  
+  # Make predictions using the trained model
+  y_pred = model.predict(x_in)
+
+  # Check for multi-class
+  if len(y_pred[0]) > 1:
+    print("doing multiclass classification...")
+    # We have to reshape our predictions to get them ready for plotting
+    y_pred = np.argmax(y_pred, axis=1).reshape(xx.shape)
+  else:
+    print("doing binary classifcation...")
+    y_pred = np.round(y_pred).reshape(xx.shape)
+  
+  # Plot decision boundary
+  plt.contourf(xx, yy, y_pred, cmap=plt.cm.RdYlBu, alpha=0.7)
+  plt.scatter(X[:, 0], X[:, 1], c=y, s=40, cmap=plt.cm.RdYlBu)
+  plt.xlim(xx.min(), xx.max())
+  plt.ylim(yy.min(), yy.max())
+```
+```
+# Example call
+# Check out the predictions our model is making 
+plot_decision_boundary(model_3, X, y)
+```
+##### 
+model
 ```
 # Visualize the model in commandline style
 model.summary()
@@ -538,6 +589,7 @@ files.download("best_model_HDF5_format.h5")
 ### Toy datasets
 For practice or as warmup exercises:
 https://scikit-learn.org/stable/datasets/toy_dataset.html
+https://scikit-learn.org/stable/datasets.html
 [Back to top](#contents)
 ### Typical workflow
 Check the data, figure out the problem type (regression, binary or multi classification etc.)
