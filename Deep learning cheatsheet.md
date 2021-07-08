@@ -378,6 +378,18 @@ def plot_decision_boundary(model, X, y):
 # Check out the predictions our model is making 
 plot_decision_boundary(model_3, X, y)
 ```
+``` 
+# Check train and test data
+# Plot the decision boundaries for the training and test sets
+plt.figure(figsize=(12, 6))
+plt.subplot(1, 2, 1)
+plt.title("Train")
+plot_decision_boundary(model_8, X=X_train, y=y_train)
+plt.subplot(1, 2, 2)
+plt.title("Test")
+plot_decision_boundary(model_8, X=X_test, y=y_test)
+plt.show()
+```
 ##### 
 model
 ```
