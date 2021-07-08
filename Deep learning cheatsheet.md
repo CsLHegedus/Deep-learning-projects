@@ -87,7 +87,9 @@ import matplotlib.pyplot as plt
 ##### Scikitlearn
 Scikitlearn is a library for data preprocessing and machine learning models
 ```
-``````
+```
+
+```
 #For data preprocessing
 from sklearn.compose import make_column_transformer
 from sklearn.preprocessing import MinMaxScaler, OneHotEncoder
@@ -524,12 +526,19 @@ model_2_preds = model_2.predict(X_test)
 saved_model_preds = loaded_saved_model.predict(X_test)
 mae(y_test, saved_model_preds.squeeze()).numpy() == mae(y_test, model_2_preds.squeeze()).numpy()
 ```
+[Back to top](#contents)
 ### How to download a model from google colab
 ```
 # Download the model (or any file) from Google Colab
 from google.colab import files
 files.download("best_model_HDF5_format.h5")
 ```
+[Back to top](#contents)
+
+### Toy datasets
+For practice or as warmup exercises:
+https://scikit-learn.org/stable/datasets/toy_dataset.html
+[Back to top](#contents)
 ### Typical workflow
 Check the data, figure out the problem type (regression, binary or multi classification etc.)
 
@@ -596,6 +605,22 @@ The output shape is the shape of your data you want to come out of your model.
 
 original source: Adapted from page 293 of [Hands-On Machine Learning with Scikit-Learn, Keras & TensorFlow Book by Aurélien Géron](https://www.oreilly.com/library/view/hands-on-machine-learning/9781492032632/)
         
+[Back to top](#contents)  
+##### Typical architecture of a classification neural network
+| **Hyperparameter** | **Typical value** |
+| --- | --- | --- |
+| Input layer shape | Same as number of features (e.g. 5 for age, sex, height, weight, smoking status in heart disease prediction) | Same as binary classification |
+| Hidden layer(s) | Problem specific, minimum = 1, maximum = unlimited | Same as binary classification |
+| Neurons per hidden layer | Problem specific, generally 10 to 100 | Same as binary classification |
+| Output layer shape | 1 (one class or the other) | 1 per class (e.g. 3 for food, person or dog photo) |
+| Hidden activation | Usually [ReLU](https://www.kaggle.com/dansbecker/rectified-linear-units-relu-in-deep-learning) (rectified linear unit) | Same as binary classification |
+| Output activation | Sigmoid	| Softmax |
+| Loss function | Cross entropy (tf.keras.losses.BinaryCrossentropy in TensorFlow)	(mean absolute error)/Huber (combination of MAE/MSE) if outliers | Cross entropy (tf.keras.losses.CategoricalCrossentropy in TensorFlow)
+|
+| Optimizer | [SGD](https://www.tensorflow.org/api_docs/python/tf/keras/optimizers/SGD) (stochastic gradient descent), [Adam](https://www.tensorflow.org/api_docs/python/tf/keras/optimizers/Adam) | Same as binary classification |
+
+original source: Adapted from page 295 of [Hands-On Machine Learning with Scikit-Learn, Keras & TensorFlow Book by Aurélien Géron](https://www.oreilly.com/library/view/hands-on-machine-learning/9781492032632/)
+             
 [Back to top](#contents)  
 ##### Regression model example
 ```
