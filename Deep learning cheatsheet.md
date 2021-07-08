@@ -58,6 +58,7 @@ it includes the cheat sheet for the notebooks below:
 - [How to compare models](#how-to-compare-models)
 - [How to save, load and check a saved a model](#how-to-save-load-and-check-a-saved-a-model)
 - [How to download a model from google colab](#how-to-download-a-model-from-google-colab)
+- [Toy datasets](#toy_datasets)
 
 
 ### Useful libraries, modules
@@ -86,6 +87,7 @@ import matplotlib.pyplot as plt
 ##### Scikitlearn
 Scikitlearn is a library for data preprocessing and machine learning models
 ```
+``````
 #For data preprocessing
 from sklearn.compose import make_column_transformer
 from sklearn.preprocessing import MinMaxScaler, OneHotEncoder
