@@ -659,7 +659,7 @@ If you train the model for long time (1000+ epochs) you might want to
 The input shape is the shape of your data that goes into the model.  
 The output shape is the shape of your data you want to come out of your model.  
 ##### Typical architecture of a regression neural network
-| **Hyperparameter** | **Binary classification** | **Multiclass classification** |
+| **Hyperparameter** | **Typical value** |
 | --- | --- |
 | Input layer shape | Same shape as number of features (e.g. 3 for # bedrooms, # bathrooms, # car spaces in housing price prediction) |
 | Hidden layer(s) | Problem specific, minimum = 1, maximum = unlimited |
@@ -674,7 +674,7 @@ original source: Adapted from page 293 of [Hands-On Machine Learning with Scikit
         
 [Back to top](#contents)  
 ##### Typical architecture of a classification neural network
-| **Hyperparameter** | **Typical value** |
+| **Hyperparameter** | **Binary classification** | **Multiclass classification** |
 | --- | --- | --- |
 | Input layer shape | Same as number of features (e.g. 5 for age, sex, height, weight, smoking status in heart disease prediction) | Same as binary classification |
 | Hidden layer(s) | Problem specific, minimum = 1, maximum = unlimited | Same as binary classification |
