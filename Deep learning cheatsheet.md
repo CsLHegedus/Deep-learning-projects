@@ -55,6 +55,7 @@ it includes the cheat sheet for the notebooks below:
 - [Typical architecture of a regression neural network](#typical-architecture-of-a-regression-neural-network)
 - [Regression model example](#regression-model-example)
 - [Typical architecture of a classification neural network](#typical-architecture-of-a-classification-neural-network)
+- [Evaluation metrics](#evaluation_metrics)
 - [Find ideal learning rate](#find-ideal-learning-rate)
 
 #### Utilities
@@ -723,7 +724,21 @@ insurance_model_3.preds(Y_test_normal[0]) # let's use the first row of the test 
 ```
 [Typical architecture of a regression neural network](#typical-architecture-of-a-regression-neural-network)  
 [Back to top](#contents)  
+##### Evaluation metrics
+tf.keras.losses.your_loss
 
+Regression:
+mae mean of absolute errors
+mse mean of squared errors, sensitive to outliners
+huber combination of the above two
+
+Binary classification
+Accuracy Out of 100 predictions, how many does your model get correct? E.g. 95% accuracy means it gets 95/100 predictions correct.	
+Precision Proportion of true positives over total number of samples. Higher precision leads to less false positives (model predicts 1 when it should've been 0).	 
+Recall Proportion of true positives over total number of true positives and false negatives (model predicts 0 when it should've been 1). Higher recall leads to less false negatives.	
+F1-score Combines precision and recall into one metric. 1 is best, 0 is worst.	
+Confusion matrix	Compares the predicted values with the true values in a tabular way, if 100% correct, all values in the matrix will be top left to bottom right (diagnol line).	
+Classification report	Collection of some of the main classification metrics such as precision, recall and f1-score.	
 ##### Find ideal learning rate
 ```
 # Create a learning rate scheduler callback
