@@ -3,6 +3,7 @@ thanks for the course materials mrdbourke
 
 for the format I used this cheatsheet as inspiration (scroll down): https://zerotomastery.io/cheatsheets/python-cheat-sheet/  
 
+an even bigger cheatsheet for pros https://ml-cheatsheet.readthedocs.io/en/latest/activation_functions.html#
 # work in progress  
 it includes the cheat sheet for the notebooks below:  
 00_tensorflow_fundamentals sheet   
