@@ -7,6 +7,7 @@ for the format I used this cheatsheet as inspiration (scroll down): https://zero
 it includes the cheat sheet for the notebooks below:  
 00_tensorflow_fundamentals sheet   
 01_neural_network_regression_in_tensorflow  
+02. Neural Network Classification with TensorFlow¶
 
 ## Contents  
 - [Useful libraries, modules](#useful-libraries-modules)
