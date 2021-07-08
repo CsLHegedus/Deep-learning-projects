@@ -1,3 +1,3 @@
-- continue ztm course
-- note out ztm course
+- ztm course classification
+- note out ztm course classification
 - try out regulation for dl https://www.analyticsvidhya.com/blog/2018/04/fundamentals-deep-learning-regularization-techniques/
