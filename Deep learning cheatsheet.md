@@ -59,12 +59,13 @@ it includes the cheat sheet for the notebooks below:
 - [Typical architecture of a regression neural network](#typical-architecture-of-a-regression-neural-network)
 - [Regression model example](#regression-model-example)
 - [Typical architecture of a classification neural network](#typical-architecture-of-a-classification-neural-network)
-- [Evaluation metrics](#evaluation_metrics)
-- [Find ideal learning rate](#find-ideal-learning-rate)
+- [Typical architecture of a convolutional neural network](#typical-architecture-of-a-convolutional-neural-network)
 
 #### Utilities
 - [Numpy Tensorflow tensor conversions](#numpy-tensorflow-tensor-conversions)
 - [Using tensorflow decorator](#using-tensorflow-decorator)
+- [Evaluation metrics](#evaluation_metrics)
+- [Find ideal learning rate](#find-ideal-learning-rate)
 - [How to compare models](#how-to-compare-models)
 - [How to save, load and check a saved a model](#how-to-save-load-and-check-a-saved-a-model)
 - [How to download a model from google colab](#how-to-download-a-model-from-google-colab)
@@ -782,6 +783,46 @@ saved_model_preds = loaded_saved_model.predict(X_test)
 mae(y_test, saved_model_preds.squeeze()).numpy() == mae(y_test, model_2_preds.squeeze()).numpy()
 ```
 [Back to top](#contents)
+##### Evaluation metrics
+tf.keras.losses.your_loss
+
+Regression:
+mae mean of absolute errors
+mse mean of squared errors, sensitive to outliners
+huber combination of the above two
+
+Binary classification
+Accuracy Out of 100 predictions, how many does your model get correct? E.g. 95% accuracy means it gets 95/100 predictions correct.	
+Precision Proportion of true positives over total number of samples. Higher precision leads to less false positives (model predicts 1 when it should've been 0).	 
+Recall Proportion of true positives over total number of true positives and false negatives (model predicts 0 when it should've been 1). Higher recall leads to less false negatives.	
+F1-score Combines precision and recall into one metric. 1 is best, 0 is worst.	
+Confusion matrix	Compares the predicted values with the true values in a tabular way, if 100% correct, all values in the matrix will be top left to bottom right (diagnol line).	
+Classification report	Collection of some of the main classification metrics such as precision, recall and f1-score.	
+##### Find ideal learning rate
+```
+# Create a learning rate scheduler callback
+lr_scheduler = tf.keras.callbacks.LearningRateScheduler(lambda epoch: 1e-4 * 10**(epoch/20)) # traverse a set of learning rate values starting from 1e-4, increasing by 10**(epoch/20) every epoch
+
+# Fit the model (passing the lr_scheduler callback)
+history = model_9.fit(X_train, 
+                      y_train, 
+                      epochs=100,
+                      callbacks=[lr_scheduler])
+
+# Plot the learning rate versus the loss
+lrs = 1e-4 * (10 ** (np.arange(100)/20))
+plt.figure(figsize=(10, 7))
+plt.semilogx(lrs, history.history["loss"]) # we want the x-axis (learning rate) to be log scale
+plt.xlabel("Learning Rate")
+plt.ylabel("Loss")
+plt.title("Learning rate vs. loss");
+```
+To figure out the ideal value of the learning rate (at least the ideal value to begin training our model), the rule of thumb is to take the learning rate value where the loss is still decreasing but not quite flattened out (usually about 10x smaller than the bottom of the curve).
+
+Example of other typical learning rate values
+10**0, 10**-1, 10**-2, 10**-3, 1e-4
+
+[Back to top](#contents)  
 ### How to download a model from google colab
 ```
 # Download the model (or any file) from Google Colab
@@ -790,7 +831,7 @@ files.download("best_model_HDF5_format.h5")
 ```
 [Back to top](#contents)
 
-### Toy datasets
+##### Toy datasets
 For practice or as warmup exercises:
 https://scikit-learn.org/stable/datasets/toy_dataset.html
 https://scikit-learn.org/stable/datasets.html
@@ -847,6 +888,7 @@ If you train the model for long time (1000+ epochs) you might want to
 - use checkpoints the save the progress so if something happens you don't have to train from scratch
 ```
 [Back to top](#contents)
+
 ### Typical architecture of neural networks
 The input shape is the shape of your data that goes into the model.  
 The output shape is the shape of your data you want to come out of your model.  
@@ -915,45 +957,15 @@ insurance_model_3.preds(Y_test_normal[0]) # let's use the first row of the test 
 ```
 [Typical architecture of a regression neural network](#typical-architecture-of-a-regression-neural-network)  
 [Back to top](#contents)  
-##### Evaluation metrics
-tf.keras.losses.your_loss
 
-Regression:
-mae mean of absolute errors
-mse mean of squared errors, sensitive to outliners
-huber combination of the above two
-
-Binary classification
-Accuracy Out of 100 predictions, how many does your model get correct? E.g. 95% accuracy means it gets 95/100 predictions correct.	
-Precision Proportion of true positives over total number of samples. Higher precision leads to less false positives (model predicts 1 when it should've been 0).	 
-Recall Proportion of true positives over total number of true positives and false negatives (model predicts 0 when it should've been 1). Higher recall leads to less false negatives.	
-F1-score Combines precision and recall into one metric. 1 is best, 0 is worst.	
-Confusion matrix	Compares the predicted values with the true values in a tabular way, if 100% correct, all values in the matrix will be top left to bottom right (diagnol line).	
-Classification report	Collection of some of the main classification metrics such as precision, recall and f1-score.	
-##### Find ideal learning rate
-```
-# Create a learning rate scheduler callback
-lr_scheduler = tf.keras.callbacks.LearningRateScheduler(lambda epoch: 1e-4 * 10**(epoch/20)) # traverse a set of learning rate values starting from 1e-4, increasing by 10**(epoch/20) every epoch
-
-# Fit the model (passing the lr_scheduler callback)
-history = model_9.fit(X_train, 
-                      y_train, 
-                      epochs=100,
-                      callbacks=[lr_scheduler])
-
-# Plot the learning rate versus the loss
-lrs = 1e-4 * (10 ** (np.arange(100)/20))
-plt.figure(figsize=(10, 7))
-plt.semilogx(lrs, history.history["loss"]) # we want the x-axis (learning rate) to be log scale
-plt.xlabel("Learning Rate")
-plt.ylabel("Loss")
-plt.title("Learning rate vs. loss");
-```
-To figure out the ideal value of the learning rate (at least the ideal value to begin training our model), the rule of thumb is to take the learning rate value where the loss is still decreasing but not quite flattened out (usually about 10x smaller than the bottom of the curve).
-
-Example of other typical learning rate values
-10**0, 10**-1, 10**-2, 10**-3, 1e-4
-
-[Back to top](#contents)  
-##### 
-
+##### Typical architecture of a convolutional neural network
+| **Hyperparameter/Layer type** | **What does it do?** | **Typical values** |
+| --- | --- | --- |
+| Input image(s) | Target images you'd like to discover patterns in	 | Whatever you can take a photo (or video) of |
+| Input layer	 | Takes in target images and preprocesses them for further layers | input_shape = [batch_size, image_height, image_width, color_channels] |
+| Convolution layer	 | Extracts/learns the most important features from target images	 | Multiple, can create with tf.keras.layers.ConvXD (X can be multiple values) |
+| Hidden activation	| Adds non-linearity to learned features (non-straight lines)	| Usually ReLU (tf.keras.activations.relu) |
+|Pooling layer	|Reduces the dimensionality of learned image features	|Average (tf.keras.layers.AvgPool2D) or Max (tf.keras.layers.MaxPool2D)|
+|Fully connected layer	|Further refines learned features from convolution layers	|tf.keras.layers.Dense|
+|Output layer	|Takes learned features and outputs them in shape of target labels	|output_shape = [number_of_classes] (e.g. 3 for pizza, steak or sushi)|
+|Output activation	|Adds non-linearities to output layer	|tf.keras.activations.sigmoid (binary classification) or tf.keras.activations.softmax|
