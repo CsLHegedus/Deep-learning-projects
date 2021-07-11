@@ -46,7 +46,7 @@ it includes the cheat sheet for the notebooks below:
 - [Visualizing the data, classification model](#visualizing-the-data-classification-model)
 - [Visualizing the data, image multiclass classification](#visualizing-the-data-image-multiclass-classification)
 - [Visualizing the model](#visualizing-the-model)
-- [Visualizing the loss curve](#visualizing-loss-curve)
+- [Visualizing the loss curve](#visualizing-the-loss-curve)
 #### Steps in preprocessing and modelling
 - [Typical workflow for modelling](#typical-workflow)
 #### Data preprocessing
@@ -570,6 +570,35 @@ pd.DataFrame(history_1.history).plot()
 plt.ylabel("loss")
 plt.xlabel("epochs");
 ```
+```
+# Plot the validation and training data separately
+def plot_loss_curves(history):
+  """
+  Returns separate loss curves for training and validation metrics.
+  """ 
+  loss = history.history['loss']
+  val_loss = history.history['val_loss']
+
+  accuracy = history.history['accuracy']
+  val_accuracy = history.history['val_accuracy']
+
+  epochs = range(len(history.history['loss']))
+
+  # Plot loss
+  plt.plot(epochs, loss, label='training_loss')
+  plt.plot(epochs, val_loss, label='val_loss')
+  plt.title('Loss')
+  plt.xlabel('Epochs')
+  plt.legend()
+
+  # Plot accuracy
+  plt.figure()
+  plt.plot(epochs, accuracy, label='training_accuracy')
+  plt.plot(epochs, val_accuracy, label='val_accuracy')
+  plt.title('Accuracy')
+  plt.xlabel('Epochs')
+  plt.legend();
+```
 [Back to top](#contents)
 ### Data preprocessing
 ##### File structure of data
@@ -994,4 +1023,27 @@ model_4 = Sequential([
   Dense(1, activation='sigmoid') # output layer (specify output shape)
 ])
 ```
+And it follows the typical CNN structure of:
+
+Input -> Conv + ReLU layers (non-linearities) -> Pooling layer -> Fully connected (dense layer) as Output
+Let's discuss some of the components of the Conv2D layer:
+
+The "2D" means our inputs are two dimensional (height and width), even though they have 3 colour channels, the convolutions are run on each channel invididually.
+filters - these are the number of "feature extractors" that will be moving over our images.
+kernel_size - the size of our filters, for example, a kernel_size of (3, 3) (or just 3) will mean each filter will have the size 3x3, meaning it will look at a space of 3x3 pixels each time. The smaller the kernel, the more fine-grained features it will extract.
+stride - the number of pixels a filter will move across as it covers the image. A stride of 1 means the filter moves across each pixel 1 by 1. A stride of 2 means it moves 2 pixels at a time.
+padding - this can be either 'same' or 'valid', 'same' adds zeros the to outside of the image so the resulting output of the convolutional layer is the same as the input, where as 'valid' (default) cuts off excess pixels where the filter doesn't fit (e.g. 224 pixels wide divided by a kernel size of 3 (224/3 = 74.6) means a single pixel will get cut off the end.
+What's a "feature"?
+
+A feature can be considered any significant part of an image. For example, in our case, a feature might be the circular shape of pizza. Or the rough edges on the outside of a steak.
+
+It's important to note that these features are not defined by us, instead, the model learns them as it applies different filters across the image.
+
+📖 Resources: For a great demonstration of these in action, be sure to spend some time going through the following:
+
+CNN Explainer Webpage - a great visual overview of many of the concepts we're replicating here with code.
+A guide to convolutional arithmetic for deep learning - a phenomenal introduction to the math going on behind the scenes of a convolutional neural network.
+For a great explanation of padding, see this Stack Overflow answer.
+Now our model is ready, let's compile it.
+
 [Back to top](#contents)  
