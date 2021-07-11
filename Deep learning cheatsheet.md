@@ -11,8 +11,6 @@ it includes the cheat sheet for the notebooks below:
 02. Neural Network Classification with TensorFlow
 03. Convolutional Neural Networks and Computer Vision with TensorFlow
 
-%%html
-<marquee style='width: 30%; color: blue;'><b>Whee!</b></marquee>
 
 ## Contents  
 - [Useful libraries, modules](#useful-libraries-modules)
@@ -838,6 +836,8 @@ To improve use
 - different layers
 - different optimizer
 - more epochs
+
+- more data
 ```
 Optional
 ```
@@ -955,5 +955,5 @@ Example of other typical learning rate values
 10**0, 10**-1, 10**-2, 10**-3, 1e-4
 
 [Back to top](#contents)  
-
+##### 
 
