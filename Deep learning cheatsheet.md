@@ -60,6 +60,7 @@ it includes the cheat sheet for the notebooks below:
 - [Regression model example](#regression-model-example)
 - [Typical architecture of a classification neural network](#typical-architecture-of-a-classification-neural-network)
 - [Typical architecture of a convolutional neural network](#typical-architecture-of-a-convolutional-neural-network)
+- [Convolutional model example with less typing than in regression](Convolutional-model-example-with-less-typing-than-in-regression)
 
 #### Utilities
 - [Numpy Tensorflow tensor conversions](#numpy-tensorflow-tensor-conversions)
@@ -662,6 +663,7 @@ X_train_normal = ct.transform(X_train)
 X_test_normal = ct.transform(X_test)
 
 ```
+
 ### Utilities
 ##### Download and extract zip
 ```
@@ -969,3 +971,27 @@ insurance_model_3.preds(Y_test_normal[0]) # let's use the first row of the test 
 |Fully connected layer	|Further refines learned features from convolution layers	|tf.keras.layers.Dense|
 |Output layer	|Takes learned features and outputs them in shape of target labels	|output_shape = [number_of_classes] (e.g. 3 for pizza, steak or sushi)|
 |Output activation	|Adds non-linearities to output layer	|tf.keras.activations.sigmoid (binary classification) or tf.keras.activations.softmax|
+[Back to top](#contents)  
+
+##### Convolutional model example with less typing than in regression
+```
+# Make the creating of our model a little easier
+from tensorflow.keras.optimizers import Adam
+from tensorflow.keras.layers import Dense, Flatten, Conv2D, MaxPool2D, Activation
+from tensorflow.keras import Sequential
+
+# Create the model (this can be our baseline, a 3 layer Convolutional Neural Network)
+model_4 = Sequential([
+  Conv2D(filters=10, 
+         kernel_size=3, 
+         strides=1,
+         padding='valid',
+         activation='relu', 
+         input_shape=(224, 224, 3)), # input layer (specify input shape)
+  Conv2D(10, 3, activation='relu'),
+  Conv2D(10, 3, activation='relu'),
+  Flatten(),
+  Dense(1, activation='sigmoid') # output layer (specify output shape)
+])
+```
+[Back to top](#contents)  
