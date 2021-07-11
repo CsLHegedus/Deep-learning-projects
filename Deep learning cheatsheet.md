@@ -1000,6 +1000,7 @@ insurance_model_3.preds(Y_test_normal[0]) # let's use the first row of the test 
 |Fully connected layer	|Further refines learned features from convolution layers	|tf.keras.layers.Dense|
 |Output layer	|Takes learned features and outputs them in shape of target labels	|output_shape = [number_of_classes] (e.g. 3 for pizza, steak or sushi)|
 |Output activation	|Adds non-linearities to output layer	|tf.keras.activations.sigmoid (binary classification) or tf.keras.activations.softmax|
+
 [Back to top](#contents)  
 
 ##### Convolutional model example with less typing than in regression
@@ -1028,22 +1029,10 @@ And it follows the typical CNN structure of:
 Input -> Conv + ReLU layers (non-linearities) -> Pooling layer -> Fully connected (dense layer) as Output
 Let's discuss some of the components of the Conv2D layer:
 
-The "2D" means our inputs are two dimensional (height and width), even though they have 3 colour channels, the convolutions are run on each channel invididually.
-filters - these are the number of "feature extractors" that will be moving over our images.
-kernel_size - the size of our filters, for example, a kernel_size of (3, 3) (or just 3) will mean each filter will have the size 3x3, meaning it will look at a space of 3x3 pixels each time. The smaller the kernel, the more fine-grained features it will extract.
-stride - the number of pixels a filter will move across as it covers the image. A stride of 1 means the filter moves across each pixel 1 by 1. A stride of 2 means it moves 2 pixels at a time.
-padding - this can be either 'same' or 'valid', 'same' adds zeros the to outside of the image so the resulting output of the convolutional layer is the same as the input, where as 'valid' (default) cuts off excess pixels where the filter doesn't fit (e.g. 224 pixels wide divided by a kernel size of 3 (224/3 = 74.6) means a single pixel will get cut off the end.
-What's a "feature"?
-
-A feature can be considered any significant part of an image. For example, in our case, a feature might be the circular shape of pizza. Or the rough edges on the outside of a steak.
-
-It's important to note that these features are not defined by us, instead, the model learns them as it applies different filters across the image.
-
-📖 Resources: For a great demonstration of these in action, be sure to spend some time going through the following:
-
-CNN Explainer Webpage - a great visual overview of many of the concepts we're replicating here with code.
-A guide to convolutional arithmetic for deep learning - a phenomenal introduction to the math going on behind the scenes of a convolutional neural network.
-For a great explanation of padding, see this Stack Overflow answer.
-Now our model is ready, let's compile it.
+- The "2D" means our inputs are two dimensional (height and width), even though they have 3 colour channels, the convolutions are run on each channel invididually.
+- filters - these are the number of "feature extractors" that will be moving over our images.
+- kernel_size - the size of our filters, for example, a kernel_size of (3, 3) (or just 3) will mean each filter will have the size 3x3, meaning it will look at a space of 3x3 pixels each time. The smaller the kernel, the more fine-grained features it will extract.
+- stride - the number of pixels a filter will move across as it covers the image. A stride of 1 means the filter moves across each pixel 1 by 1. A stride of 2 means it moves 2 pixels at a time.
+- padding - this can be either 'same' or 'valid', 'same' adds zeros the to outside of the image so the resulting output of the - --- convolutional layer is the same as the input, where as 'valid' (default) cuts off excess pixels where the filter doesn't fit (e.g. 224 pixels wide divided by a kernel size of 3 (224/3 = 74.6) means a single pixel will get cut off the end.
 
 [Back to top](#contents)  
