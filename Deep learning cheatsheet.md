@@ -48,6 +48,7 @@ it includes the cheat sheet for the notebooks below:
 #### Steps in preprocessing and modelling
 - [Typical workflow for modelling](#typical-workflow)
 #### Data preprocessing
+- [File structure of data](#file-structure-of-data) 
 - [Train test split with python](#train-test-split-with-python)
 - [One hot encoding with pandas](#one-hot-encoding-with-pandas)
 - [One hot encoding with tensorflow](#one-hot-encoding-with-tensorflow)
@@ -65,6 +66,7 @@ it includes the cheat sheet for the notebooks below:
 - [How to compare models](#how-to-compare-models)
 - [How to save, load and check a saved a model](#how-to-save-load-and-check-a-saved-a-model)
 - [How to download a model from google colab](#how-to-download-a-model-from-google-colab)
+- [Download and extract zip](#download-and-extract-zip)
 - [datasets](#toy_datasets)
 
 
@@ -514,6 +516,34 @@ plot_random_image(model=model_14,
                   true_labels=test_labels, 
                   classes=class_names)
 ```
+```
+# View a random image
+import matplotlib.pyplot as plt
+import matplotlib.image as mpimg
+import random
+
+def view_random_image(target_dir, target_class):
+  # Setup target directory (we'll view images from here)
+  target_folder = target_dir+target_class
+
+  # Get a random image path
+  random_image = random.sample(os.listdir(target_folder), 1)
+
+  # Read in the image and plot it using matplotlib
+  img = mpimg.imread(target_folder + "/" + random_image[0])
+  plt.imshow(img)
+  plt.title(target_class)
+  plt.axis("off");
+
+  print(f"Image shape: {img.shape}") # show the shape of the image
+
+  return img
+```
+```
+# View a random image from the training dataset
+img = view_random_image(target_dir="pizza_steak/train/",
+                        target_class="steak")
+```
 ##### Visualizing the model
 ```
 # Visualize the model in commandline style
@@ -538,6 +568,30 @@ plt.xlabel("epochs");
 ```
 [Back to top](#contents)
 ### Data preprocessing
+##### File structure of data
+```
+# Check invidual folders
+!ls pizza_steak
+!ls pizza_steak/train/
+
+# Walk through pizza_steak directory and list number of files
+import os
+
+for dirpath, dirnames, filenames in os.walk("pizza_steak"):
+  print(f"There are {len(dirnames)} directories and {len(filenames)} images in '{dirpath}'.")
+
+# Another way to find out how many images are in a file
+num_steak_images_train = len(os.listdir("pizza_steak/train/steak"))
+
+num_steak_images_train
+
+# Get the class names (programmatically, this is much more helpful with a longer list of classes)
+import pathlib
+import numpy as np
+data_dir = pathlib.Path("pizza_steak/train/") # turn our training path into a Python path
+class_names = np.array(sorted([item.name for item in data_dir.glob('*')])) # created a list of class_names from the subdirectories
+print(class_names)
+```
 ##### Train test split with python
 Get your data into train and test sets. Train for training, test for testing, easy isn't it?
 ```
@@ -606,6 +660,18 @@ X_test_normal = ct.transform(X_test)
 
 ```
 ### Utilities
+##### Download and extract zip
+```
+import zipfile
+
+# Download zip file of pizza_steak images
+!wget https://storage.googleapis.com/ztm_tf_course/food_vision/pizza_steak.zip 
+
+# Unzip the downloaded file
+zip_ref = zipfile.ZipFile("pizza_steak.zip", "r")
+zip_ref.extractall()
+zip_ref.close()
+```
 ##### Numpy Tensorflow tensor conversions
 ```
 # Create a tensor from a NumPy array
