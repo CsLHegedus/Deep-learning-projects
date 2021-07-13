@@ -1035,4 +1035,6 @@ Let's discuss some of the components of the Conv2D layer:
 - stride - the number of pixels a filter will move across as it covers the image. A stride of 1 means the filter moves across each pixel 1 by 1. A stride of 2 means it moves 2 pixels at a time.
 - padding - this can be either 'same' or 'valid', 'same' adds zeros the to outside of the image so the resulting output of the - --- convolutional layer is the same as the input, where as 'valid' (default) cuts off excess pixels where the filter doesn't fit (e.g. 224 pixels wide divided by a kernel size of 3 (224/3 = 74.6) means a single pixel will get cut off the end.
 
+end to end example:
+https://colab.research.google.com/drive/1tA-6oY2EUPg96EF3-mIpPB6bs9jckcsc#scrollTo=lRiun3m5PwZL
 [Back to top](#contents)  
