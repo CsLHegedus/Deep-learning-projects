@@ -1001,6 +1001,8 @@ insurance_model_3.preds(Y_test_normal[0]) # let's use the first row of the test 
 |Output layer	|Takes learned features and outputs them in shape of target labels	|output_shape = [number_of_classes] (e.g. 3 for pizza, steak or sushi)|
 |Output activation	|Adds non-linearities to output layer	|tf.keras.activations.sigmoid (binary classification) or tf.keras.activations.softmax|
 
+detailed explanation of layers and their respective parameters:  
+https://poloclub.github.io/cnn-explainer/
 [Back to top](#contents)  
 
 ##### Convolutional model example with less typing than in regression
