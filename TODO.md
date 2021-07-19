@@ -1,5 +1,13 @@
-- ztm course transfer learning 4
+Done:
+- go through ztm course regression, classification, conv neural networks
+- note out ztm course regression, classification, conv neural networks
+- get useful code from  regression, classification, conv neural networks
+- go through ztm course transfer learning 4
 - note out ztm course transfer learning 4 into an end to end example
+
+
+
+In progress:
 - get useful code from  transfer learning end to end examples
 
 extra bits
