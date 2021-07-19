@@ -1072,6 +1072,9 @@ https://github.com/CsLHegedus/Deep-learning-projects/blob/main/Transfer_learning
 
 ##### Tensorboard
 ```
+Only continue if you are okay with that your experiments are publicly available  
+Comparing models with tensorflow (in this example just one architecture is shown)
+
 # Upload Tensorboard dev records
 !tensorboard dev upload --logdir ./tensorflow_hub/ \
 --name "ResNet50V2" \
@@ -1081,8 +1084,10 @@ https://github.com/CsLHegedus/Deep-learning-projects/blob/main/Transfer_learning
 Treat authorization code like a password
 ```
 example 
-https://tensorboard.dev/experiment/6JvGksvdTVqUz2OZtRnE5A/#scalars&runSelectionState=eyJyZXNuZXQ1MFYyLzIwMjEwNzE5LTE3NDI1Ny90cmFpbiI6ZmFsc2UsInJlc25ldDUwVjIvMjAyMTA3MTktMTc0MjU3L3ZhbGlkYXRpb24iOnRydWV9```
-```# Check out your experiments on TensorBoard
+https://tensorboard.dev/experiment/6JvGksvdTVqUz2OZtRnE5A/#scalars&runSelectionState=eyJyZXNuZXQ1MFYyLzIwMjEwNzE5LTE3NDI1Ny90cmFpbiI6ZmFsc2UsInJlc25ldDUwVjIvMjAyMTA3MTktMTc0MjU3L3ZhbGlkYXRpb24iOnRydWV9
+```
+```
+Check out your experiments on TensorBoard
 !tensorboard dev list
 ```
 ```
