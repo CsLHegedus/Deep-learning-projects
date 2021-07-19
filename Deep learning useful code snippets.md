@@ -7,11 +7,12 @@ an even bigger cheatsheet for pros https://ml-cheatsheet.readthedocs.io/en/lates
 the cheatsheet for anything http://www.cheat-sheets.org/  
 cnn explainer https://poloclub.github.io/cnn-explainer/
 # work in progress  
-it includes the cheat sheet for the notebooks below:  
+it includes the useful code snippets for the notebooks below:  
 00_tensorflow_fundamentals sheet   
 01_neural_network_regression_in_tensorflow  
-02. Neural Network Classification with TensorFlow
+02. Neural Network Classification with TensorFlow  
 03. Convolutional Neural Networks and Computer Vision with TensorFlow
+04. Transfer Learning with TensorFlow Part 1: Feature Extraction 
 
 
 ## Contents  
@@ -57,12 +58,13 @@ it includes the cheat sheet for the notebooks below:
 - [One hot encoding with pandas](#one-hot-encoding-with-pandas)
 - [One hot encoding with tensorflow](#one-hot-encoding-with-tensorflow)
 - [One hot encoding and data normalization with scikitlearn](#one-hot-encoding-and-data-normalization-with-scikitlearn)
-#### Typical neural network architectures
+#### Typical neural network architectures and examples
 - [Typical architecture of a regression neural network](#typical-architecture-of-a-regression-neural-network)
 - [Regression model example](#regression-model-example)
 - [Typical architecture of a classification neural network](#typical-architecture-of-a-classification-neural-network)
 - [Typical architecture of a convolutional neural network](#typical-architecture-of-a-convolutional-neural-network)
 - [Convolutional model example with less typing than in regression](Convolutional-model-example-with-less-typing-than-in-regression)
+- [Types of transfer learning](#types-of-transfer-learning)
 
 #### Utilities
 - [Numpy Tensorflow tensor conversions](#numpy-tensorflow-tensor-conversions)
@@ -73,7 +75,7 @@ it includes the cheat sheet for the notebooks below:
 - [How to save, load and check a saved a model](#how-to-save-load-and-check-a-saved-a-model)
 - [How to download a model from google colab](#how-to-download-a-model-from-google-colab)
 - [Download and extract zip](#download-and-extract-zip)
-- [datasets](#toy_datasets)
+- [Datasets, toy datasets](#toy_datasets)
 
 
 ### Useful libraries, modules
@@ -1042,3 +1044,27 @@ Let's discuss some of the components of the Conv2D layer:
 end to end example:
 https://colab.research.google.com/drive/1tA-6oY2EUPg96EF3-mIpPB6bs9jckcsc#scrollTo=lRiun3m5PwZL
 [Back to top](#contents)  
+
+##### Types of transfer learning
+```
+    "As is" transfer learning is when you take a pretrained model as it is and apply it to your task without any changes.
+
+        For example, many computer vision models are pretrained on the ImageNet dataset which contains 1000 different classes of images. This means passing a single image to this model will produce 1000 different prediction probability values (1 for each class).
+            This is helpful if you have 1000 classes of image you'd like to classify and they're all the same as the ImageNet classes, however, it's not helpful if you want to classify only a small subset of classes (such as 10 different kinds of food). Model's with "/classification" in their name on TensorFlow Hub provide this kind of functionality.
+
+    Feature extraction transfer learning is when you take the underlying patterns (also called weights) a pretrained model has learned and adjust its outputs to be more suited to your problem.
+
+        For example, say the pretrained model you were using had 236 different layers (EfficientNetB0 has 236 layers), but the top layer outputs 1000 classes because it was pretrained on ImageNet. To adjust this to your own problem, you might remove the original activation layer and replace it with your own but with the right number of output classes. The important part here is that only the top few layers become trainable, the rest remain frozen.
+            This way all the underlying patterns remain in the rest of the layers and you can utilise them for your own problem. This kind of transfer learning is very helpful when your data is similar to the data a model has been pretrained on.
+
+    Fine-tuning transfer learning is when you take the underlying patterns (also called weights) of a pretrained model and adjust (fine-tune) them to your own problem.
+        This usually means training some, many or all of the layers in the pretrained model. This is useful when you've got a large dataset (e.g. 100+ images per class) where your data is slightly different to the data the original model was trained on.
+
+A common workflow is to "freeze" all of the learned patterns in the bottom layers of a pretrained model so they're untrainable. And then train the top 2-3 layers of so the pretrained model can adjust its outputs to your custom data (feature extraction).
+
+After you've trained the top 2-3 layers, you can then gradually "unfreeze" more and more layers and run the training process on your own data to further fine-tune the pretrained model.
+[Back to top](#contents)  
+```
+##### Transfer learning feature extraction
+end to end example:
+https://github.com/CsLHegedus/Deep-learning-projects/blob/main/Transfer_learning_feature_extraction_end_to_end_example.ipynb
