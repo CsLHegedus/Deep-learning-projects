@@ -76,6 +76,7 @@ it includes the useful code snippets for the notebooks below:
 - [How to download a model from google colab](#how-to-download-a-model-from-google-colab)
 - [Download and extract zip](#download-and-extract-zip)
 - [Datasets, toy datasets](#toy_datasets)
+- [Tensorboard](#tensorboard)
 
 
 ### Useful libraries, modules
@@ -1068,3 +1069,24 @@ After you've trained the top 2-3 layers, you can then gradually "unfreeze" more 
 ##### Transfer learning feature extraction
 end to end example:
 https://github.com/CsLHegedus/Deep-learning-projects/blob/main/Transfer_learning_feature_extraction_end_to_end_example.ipynb
+
+##### Tensorboard
+```
+# Upload Tensorboard dev records
+!tensorboard dev upload --logdir ./tensorflow_hub/ \
+--name "ResNet50V2" \
+--description "Showing the result of one TF Hub feature extraction model architectures"
+--one_shot
+```
+Treat authorization code like a password
+```
+example 
+https://tensorboard.dev/experiment/6JvGksvdTVqUz2OZtRnE5A/#scalars&runSelectionState=eyJyZXNuZXQ1MFYyLzIwMjEwNzE5LTE3NDI1Ny90cmFpbiI6ZmFsc2UsInJlc25ldDUwVjIvMjAyMTA3MTktMTc0MjU3L3ZhbGlkYXRpb24iOnRydWV9```
+```# Check out your experiments on TensorBoard
+!tensorboard dev list
+```
+```
+# Delete experiment
+!tensorboard dev delete --experiment_id u3pYYrxnSZKWE69yoKkF9g
+```
+
