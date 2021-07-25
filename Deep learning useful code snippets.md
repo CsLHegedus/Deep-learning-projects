@@ -68,6 +68,7 @@ it includes the useful code snippets for the notebooks below:
 - [Convolutional model example with less typing than in regression](Convolutional-model-example-with-less-typing-than-in-regression)
 - [Types of transfer learning](#types-of-transfer-learning)
 - [Transfer learning feature extraction end to end example](#transfer_learning_feature_extraction)
+- [Transfer learning feature fine tuning end to end example](#transfer_learning_fine_tuning)
 #### Callbacks
 - [Tensorboard](#tensorboard)
 - [Find ideal learning rate with learning scheduler](#find-ideal-learning-rate)
@@ -1163,3 +1164,6 @@ checkpoint_callback = tf.keras.callbacks.ModelCheckpoint(filepath=checkpoint_pat
                                                          save_freq="epoch", # save every epoch
                                                          verbose=1)
 ```
+##### Transfer learning fine tuning
+Transfer learning fine tuning example:  
+https://github.com/CsLHegedus/Deep-learning-projects/blob/main/Transfer_learning_Fine_tuning_end_to_end_example.ipynb
