@@ -9,9 +9,10 @@ Done:
 - note out ztm course transfer learning 5
 - note out ztm course transfer learning 6
 - get useful code from go through ztm course transfer learning 4
+- get useful code from ztm course transfer learning 5
+
 
 In progress:
-- get useful code from ztm course transfer learning 5
 - get useful code from ztm course transfer learning 6
 - note out ztm course transfer learning 7
 - note out ztm course transfer learning 7
