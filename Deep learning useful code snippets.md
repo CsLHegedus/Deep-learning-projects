@@ -51,6 +51,7 @@ it includes the useful code snippets for the notebooks below:
 - [Visualizing the data, image multiclass classification](#visualizing-the-data-image-multiclass-classification)
 - [Visualizing the model](#visualizing-the-model)
 - [Visualizing the loss curve](#visualizing-the-loss-curve)
+- [Visualizing transfer learnin feature extraction vs fine tuning](#feature_extraction_vs_fine_tuning)
 #### Steps in preprocessing and modelling
 - [Typical workflow for modelling](#typical-workflow)
 #### Data preprocessing
@@ -66,18 +67,21 @@ it includes the useful code snippets for the notebooks below:
 - [Typical architecture of a convolutional neural network](#typical-architecture-of-a-convolutional-neural-network)
 - [Convolutional model example with less typing than in regression](Convolutional-model-example-with-less-typing-than-in-regression)
 - [Types of transfer learning](#types-of-transfer-learning)
+- [Transfer learning feature extraction end to end example](#transfer_learning_feature_extraction)
+#### Callbacks
+- [Tensorboard](#tensorboard)
+- [Find ideal learning rate with learning scheduler](#find-ideal-learning-rate)
+- [Checkpoint](#checkpoint)
 
 #### Utilities
 - [Numpy Tensorflow tensor conversions](#numpy-tensorflow-tensor-conversions)
 - [Using tensorflow decorator](#using-tensorflow-decorator)
 - [Evaluation metrics](#evaluation_metrics)
-- [Find ideal learning rate](#find-ideal-learning-rate)
 - [How to compare models](#how-to-compare-models)
 - [How to save, load and check a saved a model](#how-to-save-load-and-check-a-saved-a-model)
 - [How to download a model from google colab](#how-to-download-a-model-from-google-colab)
 - [Download and extract zip](#download-and-extract-zip)
 - [Datasets, toy datasets](#toy_datasets)
-- [Tensorboard](#tensorboard)
 
 
 ### Useful libraries, modules
@@ -1048,7 +1052,6 @@ https://colab.research.google.com/drive/1tA-6oY2EUPg96EF3-mIpPB6bs9jckcsc#scroll
 [Back to top](#contents)  
 
 ##### Types of transfer learning
-```
     "As is" transfer learning is when you take a pretrained model as it is and apply it to your task without any changes.
 
         For example, many computer vision models are pretrained on the ImageNet dataset which contains 1000 different classes of images. This means passing a single image to this model will produce 1000 different prediction probability values (1 for each class).
@@ -1065,8 +1068,9 @@ https://colab.research.google.com/drive/1tA-6oY2EUPg96EF3-mIpPB6bs9jckcsc#scroll
 A common workflow is to "freeze" all of the learned patterns in the bottom layers of a pretrained model so they're untrainable. And then train the top 2-3 layers of so the pretrained model can adjust its outputs to your custom data (feature extraction).
 
 After you've trained the top 2-3 layers, you can then gradually "unfreeze" more and more layers and run the training process on your own data to further fine-tune the pretrained model.
+
 [Back to top](#contents)  
-```
+
 ##### Transfer learning feature extraction
 end to end example:
 https://github.com/CsLHegedus/Deep-learning-projects/blob/main/Transfer_learning_feature_extraction_end_to_end_example.ipynb
@@ -1096,3 +1100,66 @@ Check out your experiments on TensorBoard
 !tensorboard dev delete --experiment_id u3pYYrxnSZKWE69yoKkF9g
 ```
 
+##### Feature extraction vs fine tuning
+```
+def compare_historys(original_history, new_history, initial_epochs=5):
+    """
+    Compares feature extraction results to fine tuning.
+    """
+    # Get original history measurements
+    acc = original_history.history["accuracy"]
+    loss = original_history.history["loss"]
+
+    print(len(acc))
+
+    val_acc = original_history.history["val_accuracy"]
+    val_loss = original_history.history["val_loss"]
+
+    # Combine original history with new history
+    total_acc = acc + new_history.history["accuracy"]
+    total_loss = loss + new_history.history["loss"]
+
+    total_val_acc = val_acc + new_history.history["val_accuracy"]
+    total_val_loss = val_loss + new_history.history["val_loss"]
+
+    print(len(total_acc))
+    print(total_acc)
+
+    # Make plots
+    plt.figure(figsize=(8, 8))
+    plt.subplot(2, 1, 1)
+    plt.plot(total_acc, label='Training Accuracy')
+    plt.plot(total_val_acc, label='Validation Accuracy')
+    plt.plot([initial_epochs-1, initial_epochs-1],
+              plt.ylim(), label='Start Fine Tuning') # reshift plot around epochs
+    plt.legend(loc='lower right')
+    plt.title('Training and Validation Accuracy')
+
+    plt.subplot(2, 1, 2)
+    plt.plot(total_loss, label='Training Loss')
+    plt.plot(total_val_loss, label='Validation Loss')
+    plt.plot([initial_epochs-1, initial_epochs-1],
+              plt.ylim(), label='Start Fine Tuning') # reshift plot around epochs
+    plt.legend(loc='upper right')
+    plt.title('Training and Validation Loss')
+    plt.xlabel('epoch')
+    plt.show()
+```
+```
+compare_historys(original_history=history_10_percent_data_aug, 
+                 new_history=history_fine_10_percent_data_aug, 
+                 initial_epochs=5)
+```
+##### Checkpoint
+It is used to save weights (or even the whole model) per given number of epochs
+```
+# Setup checkpoint path
+checkpoint_path = "ten_percent_model_checkpoints_weights/checkpoint.ckpt" # note: remember saving directly to Colab is temporary
+
+# Create a ModelCheckpoint callback that saves the model's weights only
+checkpoint_callback = tf.keras.callbacks.ModelCheckpoint(filepath=checkpoint_path,
+                                                         save_weights_only=True, # set to False to save the entire model
+                                                         save_best_only=False, # set to True to save only the best model instead of a model every epoch 
+                                                         save_freq="epoch", # save every epoch
+                                                         verbose=1)
+```
