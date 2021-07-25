@@ -8,11 +8,12 @@ the cheatsheet for anything http://www.cheat-sheets.org/
 cnn explainer https://poloclub.github.io/cnn-explainer/
 # work in progress  
 it includes the useful code snippets for the notebooks below:  
-00_tensorflow_fundamentals sheet   
-01_neural_network_regression_in_tensorflow  
+00. tensorflow_fundamentals sheet   
+01. neural_network_regression_in_tensorflow  
 02. Neural Network Classification with TensorFlow  
-03. Convolutional Neural Networks and Computer Vision with TensorFlow
-04. Transfer Learning with TensorFlow Part 1: Feature Extraction 
+03. Convolutional Neural Networks and Computer Vision with TensorFlow  
+04. Transfer Learning with TensorFlow Part 1: Feature Extraction   
+05. transfer_learning_in_tensorflow_part_2_fine_tuning
 
 
 ## Contents  
