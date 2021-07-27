@@ -514,6 +514,7 @@ make_confusion_matrix(y_true=y_labels,
                       savefig=True)```
 ##### Visualizing the data, image multiclass classification
 ```
+```
 # Plot an example image and its label
 plt.imshow(train_data[17], cmap=plt.cm.binary) # change the colours to black & white
 plt.title(class_names[train_labels[17]]);
