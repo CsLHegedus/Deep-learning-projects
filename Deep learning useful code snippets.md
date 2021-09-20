@@ -1222,6 +1222,10 @@ history_10_percent_data_aug = model_2.fit(train_data_10_percent,
                                           callbacks=[create_tensorboard_callback("transfer_learning", "10_percent_data_aug"), 
                                                      checkpoint_callback])
 ```
+```
+# load saved weights
+model_2.load_weights(checkpoint_path)
+```
 ##### Transfer learning fine tuning
 Transfer learning fine tuning example:  
 https://github.com/CsLHegedus/Deep-learning-projects/blob/main/Transfer_learning_Fine_tuning_end_to_end_example.ipynb
