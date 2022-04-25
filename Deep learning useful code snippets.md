@@ -6,7 +6,7 @@ as inspiration (scroll down): https://zerotomastery.io/cheatsheets/python-cheat-
 an even bigger cheatsheet for pros https://ml-cheatsheet.readthedocs.io/en/latest/activation_functions.html#
 the cheatsheet for anything http://www.cheat-sheets.org/  
 cnn explainer https://poloclub.github.io/cnn-explainer/
-# work in progress  
+
 it includes the useful code snippets for the notebooks below:  
 00. tensorflow_fundamentals sheet   
 01. neural_network_regression_in_tensorflow  
