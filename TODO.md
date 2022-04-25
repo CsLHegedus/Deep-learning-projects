@@ -1,3 +1,5 @@
+I haven't finished the project, still I leave this as example for future uses.
+
 Done:
 - go through ztm course regression, classification, conv neural networks 1
 - note out ztm course regression, classification, conv neural networks 2 
